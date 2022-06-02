@@ -1,6 +1,8 @@
 import express from 'express'
 const app = express()
-const port = 3000
+import ('dotenv').config()
+import pool from './database'
+const port = process.env.BACKEND_PORT
 
 app.listen(port, () =>
     console.log(`App listening on port ${port}`)
