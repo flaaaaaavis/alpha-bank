@@ -1,6 +1,8 @@
-const express = require('express');
-const app = express();
-const port = 4000
+import express from 'express'
+const app = express()
+import ('dotenv').config()
+import pool from './database'
+const port = process.env.BACKEND_PORT
 
 //Setting Body-parser
 const bodyParser = require('body-parser');

@@ -13,7 +13,13 @@ embarcar nesse desafio e criar uma aplicação do zero que fizesse sentido aos p
 banco. Os executivos do banco estimam que o lançamento do MVP (Minimum Viable
 Product) da aplicação deva ocorrer nas próximas semanas.
 
-## Referências
+### BACKEND
+npm init -y
+npm i express
+npm i dot-env
+npm i pg
+
+### FRONTEND
 [Ilustrações](https://storyset.com/people/rafiki)  
 [Fontes](https://fonts.google.com/)  
 [Ícones](https://fonts.google.com/icons)
