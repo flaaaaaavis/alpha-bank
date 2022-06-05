@@ -1,7 +1,7 @@
-import express from 'express'
+const express =  require('express')
 const app = express()
-import ('dotenv').config()
-import pool from './database'
+require('dotenv').config()
+const pool = require('./database')
 const port = process.env.BACKEND_PORT
 
 //Setting Body-parser
@@ -25,4 +25,4 @@ const ROUTER_DELETE = require("./routers/routerDelete");
 
 app.use("/", ROUTER_POST, ROUTER_GET, ROUTER_DELETE, ROUTER_PUT);
 
-app.listen(port, () => console.log("Servidor Aberto em 4000"));
+app.listen(port, () => console.log("Servidor Aberto em 5000"));

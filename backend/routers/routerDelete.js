@@ -1,5 +1,5 @@
-const EXPRESS = require("express");
-const router = EXPRESS.Router();
+const express =  require('express')
+const router = express.Router();
 require("dotenv").config({ path: __dirname+"/../.env"});
 const jwt = require('jsonwebtoken');
 const { compare } = require('../src/hashController');
