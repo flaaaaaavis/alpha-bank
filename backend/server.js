@@ -25,4 +25,4 @@ const ROUTER_DELETE = require("./routers/routerDelete");
 
 app.use("/", ROUTER_POST, ROUTER_GET, ROUTER_DELETE, ROUTER_PUT);
 
-app.listen(port, () => console.log("Servidor Aberto em 5000"));
+app.listen(port, () => console.log(`Servidor Aberto em ${port}`));
