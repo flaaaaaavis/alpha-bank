@@ -48,24 +48,28 @@ let users = [
 ]
 
 router.put('/updateUser', async (req, res) => {
+    let update;
     try {
-        users.map(user => {
+        update = users.map(user => {
             console.log(user.id)
             console.log(req.body.id)
-            // if (user.id === req.body.id){
-            //     user.name = req.body.name;
-            //     user.CPF = req.body.CPF;
-            //     user.uuid = req.body.uuid;
-            //     user.bdate = req.body.bdate;
-            //     user.password = req.body.password;
-            //     console.log(user); 
-            // }
-            res.status(200).send(user)
+            if (user.id === req.body.id){
+                user.name = req.body.name;
+                user.CPF = req.body.CPF;
+                user.uuid = req.body.uuid;
+                user.bdate = req.body.bdate;
+                user.password = req.body.password;
+                console.log(user); 
+                return user;
+            }
+            return user;
         })
     } catch (error) {
-        console.log(error)
+        res.status(400).send(error)
+    } finally {
+        users = update;
+        res.sendStatus(200)
     }
-        
 });
 
 module.exports = router;
