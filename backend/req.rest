@@ -1,26 +1,17 @@
-POST http://localhost:3000/login
+PUT http://localhost:5000/deleteUser
 Content-type: application/json
 
 {
-    "email": "ridigad378@leafzie.com",
-    "password": "123456"
+    "id": 1,
+    "deletedBy": "3",
+    "deletedAt": "1970-01-01 00:00:01"
 }
 
 ###
 
-POST http://localhost:3000/createAddress
+POST http://localhost:5000/deleteAccount
 Content-type: application/json
 
 {
-    "cep": "ridigad378@leafzie.com",
-    "estado": "123456",
-    "cidade": "ridigad378@leafzie.com",
-    "bairro": "123456",
-    "logradouro": "ridigad378@leafzie.com",
-    "number": "123456"
+    "id": 5
 }
-
-
-### 
-
-GET http://localhost:3000/readAllProducts
