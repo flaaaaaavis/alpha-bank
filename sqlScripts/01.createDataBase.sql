@@ -24,10 +24,10 @@ CREATE TABLE public.accounts (
 	"deleted_by" integer,
 	"deleted_at" TIMESTAMP,
 	"user_id" serial NOT NULL,
-	"id" serial NOT NULL,
+	"account_id" serial NOT NULL,
 	"number" serial NOT NULL UNIQUE,
 	"balance" numeric(9,2) NOT NULL,
-	CONSTRAINT "accounts_pk" PRIMARY KEY ("id")
+	CONSTRAINT "accounts_pk" PRIMARY KEY ("account_id")
 ) WITH (
   OIDS=FALSE
 );
@@ -41,12 +41,12 @@ CREATE TABLE public.cards (
 	"deleted_at" TIMESTAMP,
 	"account_id" integer NOT NULL,
 	"user_id" integer NOT NULL,
-	"id" serial NOT NULL,
+	"card_id" serial NOT NULL,
 	"number" integer NOT NULL UNIQUE,
 	"expirity_date" DATE NOT NULL,
 	"password" numeric(6) NOT NULL,
 	"SSID" numeric(3) NOT NULL,
-	CONSTRAINT "cards_pk" PRIMARY KEY ("id")
+	CONSTRAINT "cards_pk" PRIMARY KEY ("card_id")
 ) WITH (
   OIDS=FALSE
 );
@@ -105,13 +105,13 @@ CREATE TABLE public.sessions (
 
 ALTER TABLE accounts ADD CONSTRAINT "accounts_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
 
-ALTER TABLE cards ADD CONSTRAINT "cards_fk0" FOREIGN KEY ("account_id") REFERENCES "accounts"("id");
+ALTER TABLE cards ADD CONSTRAINT "cards_fk0" FOREIGN KEY ("account_id") REFERENCES "accounts"("account_id");
 ALTER TABLE cards ADD CONSTRAINT "cards_fk1" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
 
 ALTER TABLE transactions ADD CONSTRAINT "transactions_fk0" FOREIGN KEY ("sender_account") REFERENCES "accounts"("number");
 ALTER TABLE transactions ADD CONSTRAINT "transactions_fk1" FOREIGN KEY ("receiver_account") REFERENCES "accounts"("number");
 
-ALTER TABLE invoices ADD CONSTRAINT "invoices_fk0" FOREIGN KEY ("card_id") REFERENCES "cards"("id");
+ALTER TABLE invoices ADD CONSTRAINT "invoices_fk0" FOREIGN KEY ("card_id") REFERENCES "cards"("card_id");
 
 ALTER TABLE purchases ADD CONSTRAINT "purchases_fk0" FOREIGN KEY ("invoice_id") REFERENCES "invoices"("id");
 

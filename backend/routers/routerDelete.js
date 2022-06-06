@@ -47,22 +47,97 @@ let users = [
     }
 ]
 
-router.put('/deleteUser', async (req, res) => {
-    try {
-        const sql = "UPDATE users SET deleted_by = $1, deleted_at = $2 WHERE user_id = $3;";
-        const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
-        await pool.query(sql, values);
-        console.log("Remoção de usuário bem sucedida!");
-
-        const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
-        const valuesResult = [false];
-        const result = await pool.query(sqlResult, valuesResult);
-
-        res.send(result)
-    } catch (error) {
-        res.status(400).send(error)
+let accounts = [
+    {
+        "user_id": 4,
+        "account_id": 1,
+        "number": "05969-2",
+        "balance": 45.23	
+    },
+    {
+        "user_id": 3,
+        "account_id": 2,
+        "number": "1259065-2",
+        "balance": 87.94
+    },
+    {
+        "user_id": 5,
+        "account_id": 3,
+        "number": "1149302-X",
+        "balance": 0.00
+    },
+    {
+        "user_id": 2,
+        "account_id": 4,
+        "number": "534087-7",
+        "balance": 1245.87
+    },
+    {
+        "user_id": 1,
+        "account_id": 5,
+        "number": "1148547-7",
+        "balance": 14021.48
     }
-    
+]
+
+let cards = [
+    {
+        "account_id": 1,
+        "card_id": 1,
+        "number": "5538 9257 2516 5813",
+        "expirity_date": "06/04/2023",
+        "password": 448238,
+        "SSID": 677
+    },
+    {
+        "account_id": 2,
+        "card_id": 2,
+        "number": "5507 7950 0053 7698",
+        "expirity_date": "06/07/2023",
+        "password": 905730,
+        "SSID": 443
+    },
+    {
+        "account_id": 3,
+        "card_id": 3,
+        "number": "5523 1239 8248 4039",
+        "expirity_date": "06/11/2023",
+        "password": 325888,
+        "SSID": 249
+    },
+    {
+        "account_id": 4,
+        "card_id": 4,
+        "number": "5486 7403 0245 9543",
+        "expirity_date": "06/07/2023",
+        "password": 618076,
+        "SSID": 399
+    },
+    {
+        "account_id": 5,
+        "card_id": 5,
+        "number": "5595 2671 0490 5000",
+        "expirity_date": "06/12/2022",
+        "password": 007270,
+        "SSID": 346
+    }
+]
+
+router.put('/deleteUser', async (req, res) => {
+    // try {
+    //     const sql = "UPDATE users SET deleted_by = $1, deleted_at = $2 WHERE user_id = $3;";
+    //     const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
+    //     await pool.query(sql, values);
+    //     console.log("Remoção de usuário bem sucedida!");
+
+    //     const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
+    //     const valuesResult = [false];
+    //     const result = await pool.query(sqlResult, valuesResult);
+
+    //     res.send(result)
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // }
 
     let users2
     try {
@@ -84,23 +159,72 @@ router.put('/deleteUser', async (req, res) => {
 });
 
 router.put('/deleteAccount', async (req, res) => {
-    
+    // try {
+    //     const sql = "UPDATE accounts SET deleted_by = $1, deleted_at = $2 WHERE account_id = $3;";
+    //     const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
+    //     await pool.query(sql, values);
+    //     console.log("Deleção de conta bem sucedida!");
+
+    //     const sqlResult = "SELECT * FROM accounts WHERE deleted = $1;";
+    //     const valuesResult = [false];
+    //     const result = await pool.query(sqlResult, valuesResult);
+
+    //     res.send(result)
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // }
+    let accounts2
+    try {
+        accounts2 = accounts.map(account => {
+            if(account.id === req.body.accountId) {
+                account.deleted_by = req.body.deletedBy;
+                account.deleted_at = req.body.deletedAt;
+                console.log(account);
+                return account;
+            }
+            return account;
+        })
+    } catch (error) {
+        res.status(400).send(error)
+    } finally {
+        accounts = accounts2;
+        res.sendStatus(200);
+    }
 })
 
 router.put('/deleteCard', async (req, res) => {
-    
-})
+    // try {
+    //     const sql = "UPDATE cards SET deleted_by = $1, deleted_at = $2 WHERE card_id = $3;";
+    //     const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
+    //     await pool.query(sql, values);
+    //     console.log("Deleção de cartão bem sucedida!");
 
-router.put('/deleteTransaction', async (req, res) => {
-    
-})
+    //     const sqlResult = "SELECT * FROM cards WHERE deleted = $1;";
+    //     const valuesResult = [false];
+    //     const result = await pool.query(sqlResult, valuesResult);
 
-router.put('/deleteInvoice', async (req, res) => {
-    
-})
+    //     res.send(result)
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // }
 
-router.put('/deletePurchase', async (req, res) => {
-    
+    let cards2
+    try {
+        cards2 = cards.map(card => {
+            if(card.id === req.body.cardId) {
+                card.deleted_by = req.body.deletedBy;
+                card.deleted_at = req.body.deletedAt;
+                console.log(card);
+                return card;
+            }
+            return card;
+        })
+    } catch (error) {
+        res.status(400).send(error)
+    } finally {
+        cards = cards2;
+        res.sendStatus(200);
+    }
 })
 
 module.exports = router;
