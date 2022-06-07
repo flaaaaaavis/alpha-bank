@@ -1,5 +1,5 @@
 CREATE TABLE public.users (
-	"created_by" integer NOT NULL,
+	"created_by" serial NOT NULL,
 	"created_at" TIMESTAMP NOT NULL,
 	"updated_by" integer,
 	"updated_at" TIMESTAMP,
