@@ -9,8 +9,7 @@ const session = require('../src/sessionController');
 
 router.post('/login', (req, res) => {    
 
-    const { login } = req.body;
-    const { password } = req.body;    
+    const { login, password } = req.body; 
         
     const users = JSONReader('users');
     const user = users.filter(element => element.login === login);
