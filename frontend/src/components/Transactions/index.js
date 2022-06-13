@@ -1,10 +1,10 @@
 import Styled from 'styled-components';
 
-export const StyledMain = Styled.main`
+export const Main = Styled.main`
 
 `
 
-export const StyledTransactionForm = Styled.form`
+export const Form = Styled.form`
     width: 30%;
     max-width: 500px;
     height: 80%;
@@ -45,14 +45,15 @@ export const StyledTransactionForm = Styled.form`
     }
 `
 
-export const StyledTransactionsPanel = Styled.div`
+export const Panel = Styled.div`
     width: 60%;
     max-width: 1126px; 
     height: 80%;
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: 
+    justify-content: space-between;
+    align-items: left;
     h2 {
         width: 642px;
         height: 99px;
@@ -65,8 +66,37 @@ export const StyledTransactionsPanel = Styled.div`
     }
 `
 
-export const StyledTransactionsTable = Styled.table``
+export const Table = Styled.table`
+    width: 100%;
+    
+`
 
-export const StyledTransactionsTableHead = Styled.thead``
+export const TableHead = Styled.thead``
 
-export const StyledTransactionsTableBody = Styled.tbody``
+export const TableBody = Styled.tbody``
+
+// async function allTransactions(userId) {
+//     // send request to backend via fetch and manage response
+//     const data = await fetch('http://localhost:5000/AllTransactions', {
+//         method: 'get',
+//         headers: {
+//             'Content-Type': 'application/json'
+//             // 'Content-Type': 'application/x-www-form-urlencoded',
+//         }
+//     })
+//     data.map(transaction => {
+        
+//     })
+// }
+
+// function DayTransactions(day) {
+    
+// }
+
+// function MonthTransactions(month) {
+
+// }
+
+// function YearTransactions(year) {
+
+// }

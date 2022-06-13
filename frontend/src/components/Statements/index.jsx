@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyledMain, ContainerTop, StyledBalance, StyledAccountBalanceTitle, StyledAccountBalance, StyledEyeButton, StyledStatementsFilter, StyledFilterOption, StyledStatementsTable, StyledTableHead, StyledTableBody, StyledStatementRow } from './index'
 
-import eyeButton from '../../images/eyeButton'
+import eyeButton from '../../images/eyeButton.png'
 
 function Statements() {
     return (

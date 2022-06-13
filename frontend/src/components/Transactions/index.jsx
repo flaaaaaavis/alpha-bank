@@ -1,27 +1,46 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { StyledMain, StyledTransactionForm, StyledTransactionsPanel } from './index'
+import { Form1, Form2, Form3, Form4 } from './components'
+import { StyledMain, Form, Panel, Table, TableHead, TableBody } from './index'
 
 function Transactions() {
     return (
         <StyledMain>
-            <StyledTransactionForm>
-                <h3>{}</h3>
-                <button>{}</button>
-            </StyledTransactionForm>
-            <StyledTransactionsPanel>
+
+            <Form>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/form1">
+                            <Form1 />
+                        </Route>
+                        <Route path="/form2">
+                            <Form2 />
+                        </Route>
+                        <Route path="/form3">
+                            <Form3 />
+                        </Route>
+                        <Route path="/form4">
+                            <Form4 />
+                        </Route>
+                    </Switch>
+                </BrowserRouter>
+            </Form>
+
+            <Panel>
                 <h2>Histórico de transferências</h2>
-                <StyledTransactionsTable>
-                    <StyledTransactionsTableHead>
+                <Table>
+                    <TableHead>
                         <tr>
-                            <th>Descrição</th>
+                            <th>Destinatário</th>
                             <th>Data e Hora</th>
                             <th>Valor</th>
                         </tr>
-                    </StyledTransactionsTableHead>
-                    <StyledTransactionsTableBody>{}</StyledTransactionsTableBody>
-                </StyledTransactionsTable>
-            </StyledTransactionsPanel>
+                    </TableHead>
+                    <TableBody>{}</TableBody>
+                </Table>
+            </Panel>
+
         </StyledMain>
     )
 }
