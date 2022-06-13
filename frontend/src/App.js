@@ -1,4 +1,4 @@
-import CardArea from './pages/CardArea.jsx'
+import DepositArea from './pages/DepositArea.jsx'
 import { GlobalStyle } from './style/style.js';
 
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <CardArea />
+      <DepositArea />
     </>    
   );
 }
