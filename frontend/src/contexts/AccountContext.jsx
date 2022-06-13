@@ -4,9 +4,9 @@ export const AccountContext=createContext({});
 
 export const AccountProvider = (props) => {
 
-    const [number, setNumber] = useState("");
-    const [uuid , setUuid] = useState("");
-    const [balance, setBalance] = useState(0);
+    const [number, setNumber] = useState("123456123456-78");
+    const [uuid , setUuid] = useState("random uuid only for testing");
+    const [balance, setBalance] = useState(100000,23);
 
     return (
         <AccountContext.Provider

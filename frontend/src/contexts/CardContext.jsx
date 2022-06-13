@@ -4,9 +4,9 @@ export const CardContext=createContext({});
 
 export const CardProvider = (props) => {
 
-    const [cardNumber, setCardNumber] = useState("");
-    const [expirityDate , setExpirityDate] = useState("");
-    const [SSID, setSSID] = useState(0);
+    const [cardNumber, setCardNumber] = useState("0000 0000 0000 0000");
+    const [expirityDate , setExpirityDate] = useState("12/37");
+    const [SSID, setSSID] = useState("567");
 
     return (
         <CardContext.Provider
