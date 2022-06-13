@@ -4,7 +4,7 @@ import { StyledTransactionsBox } from './TransactionsBox.js'
 function TransactionsBox() {
   return (
     <StyledTransactionsBox>
-        <p>Ultimas Transações</p>
+        <p>Últimas Transações</p>
         <div></div>
     </StyledTransactionsBox>
   );

@@ -1,5 +1,9 @@
 import Styled from 'styled-components';
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+</style> 
+
 export const StyledHeader = Styled.div`
     height: 224px;
     width: 100%;

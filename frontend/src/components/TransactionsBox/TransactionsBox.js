@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+</style> 
+
 export const StyledTransactionsBox = styled.div`
     height: 568px;
     width: 451px;
@@ -7,7 +11,7 @@ export const StyledTransactionsBox = styled.div`
     padding: 20px;
     border-radius: 20px;
         p {
-            font-family: 'Oxygen';
+            font-family: 'Oxygen', sans-serif;
             font-size: 30px;
             color: #000000;
             padding-left: 20px;
