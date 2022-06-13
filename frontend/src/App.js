@@ -1,9 +1,13 @@
 import CardArea from './pages/CardArea.jsx'
+import { GlobalStyle } from './style/style.js';
 
 
 function App() {
   return (
-    <CardArea />
+    <>
+      <GlobalStyle />
+      <CardArea />
+    </>    
   );
 }
 

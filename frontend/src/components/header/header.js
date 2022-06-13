@@ -30,9 +30,10 @@ export const StyledUserInfo = Styled.div`
             width: 642px;
             height: 99px;            
             font-size: 64px;
+            font-weight: 400;
             color: #007366;
         }
-        p {            
+        p, span {            
             font-size: 32px;
             color: #7A7A7A;
             margin: 0;
