@@ -5,19 +5,21 @@ export const StyledCard = Styled.div`
     color: white;
     width: 630px;
     height: 350px;
+    font-family: 'Oxygen', sans-serif;
     border-radius: 30px;
         header {
-            width:100%;
-            height: 230px;
+            width:100%;            
             display: flex;
             align-items: center;
             column-gap:50px;
-            padding: 50px;
+            padding:20px 30px 15px;
+        }
+        header img {
+            width: 100px;
         }
         header h1, span {
             display: inline;
-            font-size: 48px;
-            font-family: 'Oxygen', sans-serif;
+            font-size: 70px;
             font-weight: 400;
         }
         header span {
@@ -34,9 +36,8 @@ export const StyledCard = Styled.div`
             padding: 20px;
         }
         .flex section p {
-            font-family: 'Oxygen', sans-serif;
             font-weight: 500;
-            font-size: 48px;
+            font-size: 30px;
         }
         .flex section div {
             margin-top: 30px;
@@ -45,10 +46,9 @@ export const StyledCard = Styled.div`
             justify-content: space-around;
         }
         .flex section div span {
-            font-family: 'Oxygen', sans-serif;
             font-style: normal;
             font-weight: 500;
-            font-size: 20px;
+            font-size: 16px;
             transform: translate(35px, -20px);
             
         }        
@@ -57,10 +57,9 @@ export const StyledCard = Styled.div`
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding-bottom: 30px;
+            padding-bottom: 65px;
         }
-        .flex aside img {
-            width: 146px;
-            height: 90px;
+        .flex aside img {            
+            width: 110px;
         }
 `
