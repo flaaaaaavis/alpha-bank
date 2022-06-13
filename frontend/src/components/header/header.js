@@ -1,8 +1,9 @@
 import Styled from 'styled-components';
 
 export const StyledHeader = Styled.div`
+    min-height: 20vh;
     height: 224px;
-    width: 100%;
+    width: 100vw;
     background-color: #F6F6F6;
     
     display:flex;

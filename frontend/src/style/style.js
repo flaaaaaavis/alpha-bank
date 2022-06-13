@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         border: none;
         outline: none;
+        font: inherit;
+        vertical-align: center;
 
         box-sizing: border-box;
     }

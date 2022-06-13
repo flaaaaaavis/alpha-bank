@@ -9,7 +9,7 @@ function Header() {
     <StyledHeader>
       <FlexContainer>
         <StyledLogoBox>
-          <img src={logo} alt="Logo Alpha Bank" />
+          <img src={logo} alt="Logo AlphaBank" />
         </StyledLogoBox>
         <StyledUserInfo>
           <h1>Fulano de Tal</h1>
