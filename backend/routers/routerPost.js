@@ -82,12 +82,14 @@ router.post("/addUser", async (req, res) => {
         const user = await pool.query(`SELECT id 
                                        FROM users 
                                        WHERE email = ${email} 
-                                       AND deleted_by=null`);
+                                       AND deleted_by=null;`);
         
-        const accountQuery = "INSERT INTO accounts (user_id, uuid, balance) values ($1, $2, $3)"        
-        const accountValues= [user.rows[0], uuidv4(), 0.00]
+        const accountQuery = "INSERT INTO accounts (created_by, created_at, user_id, uuid, balance) values ($1 , NOW()::TIMESTAMP, $1, $2, $3);";
+        const accountValues= [user.rows[0].id, uuidv4(), 0.00]
+        await pool.query(accountQuery, accountValues)
 
-        
+        const cardQuery = "INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, password, SSID) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4, $5);";
+        const cardValues= [user.rows[0].id, /*NumeroDoCartão*/, ]
 
     }
 
