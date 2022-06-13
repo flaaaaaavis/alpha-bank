@@ -1,13 +1,17 @@
 import ButtonArea from "../buttonArea/ButtonArea";
 import InfoAccountArea from "../infoAccountArea/InfoAccountArea";
 import { StyledCustomerArea }from "./styles.js";
+import Header from "../../components/header/header.jsx";
 
 function CustomerArea() {
   return (
-    <StyledCustomerArea>
-      <InfoAccountArea />,
-      <ButtonArea />
+    <div>
+      <Header />
+      <StyledCustomerArea>
+        <InfoAccountArea />,
+        <ButtonArea />
     </StyledCustomerArea>
+    </div>
   );
 }
 

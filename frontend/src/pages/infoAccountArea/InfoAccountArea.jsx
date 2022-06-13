@@ -1,12 +1,12 @@
-import { StyledDiv }from "./styles.js";
+import { StyledDiv, StyledTable, StyledTitle }from "./styles.js";
 import Saldo from "../../components/saldo/Saldo.jsx";
  
 function InfoAccountArea() {
   return (
     <StyledDiv>
         <Saldo />
-        <h1 text-align="center">Últimas Transações</h1>
-        <table>
+        <StyledTitle text-align="center">Últimas Transações</StyledTitle>
+        <StyledTable>
         <thead>
         <tbody>
           <tr>
@@ -23,7 +23,7 @@ function InfoAccountArea() {
           </tr>
         </tbody>
       </thead>
-        </table>
+        </StyledTable>
     </StyledDiv>
   );
 }
