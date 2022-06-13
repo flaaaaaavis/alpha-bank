@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../images/logo.png'
 import exitButton from '../../images/exitButton.png'
-import { StyledLogoBox , FlexContainer , StyledHeader , StyledUserName , StyledUserInfo } from './header';
+import { StyledLogoBox , FlexContainer , StyledHeader , StyledUserInfo } from './header';
 
 
 function Header() {
