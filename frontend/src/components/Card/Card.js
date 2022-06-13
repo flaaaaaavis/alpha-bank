@@ -3,8 +3,8 @@ import Styled from 'styled-components';
 export const StyledCard = Styled.div`
     background-color: black;
     color: white;
-    width: 900px;
-    height: 500px;
+    width: 630px;
+    height: 350px;
     border-radius: 30px;
         header {
             width:100%;
@@ -16,7 +16,7 @@ export const StyledCard = Styled.div`
         }
         header h1, span {
             display: inline;
-            font-size: 96px;
+            font-size: 48px;
             font-family: 'Oxygen', sans-serif;
             font-weight: 400;
         }
