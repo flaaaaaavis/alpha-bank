@@ -1,9 +1,16 @@
-import React from 'react';
-import logo from '../../images/cardLogo.png';
-import masterCard from '../../images/masterCard.png'
-import { StyledCard } from './Card'
+import React, { useContext } from 'react';
+import logo from '../../images/inCardLogo.png';
+import masterCard from '../../images/masterCard.png';
+import { StyledCard } from './Card';
+import { CardContext } from '../../contexts/CardContext';
+import { UserContext } from '../../contexts/UserContext';
 
 function Card() {
+
+    const {cardNumber, expirityDate, SSID} = useContext(CardContext);
+    const { name } = useContext(UserContext)
+
+
   return (
     <StyledCard>
         <header>
@@ -12,16 +19,16 @@ function Card() {
         </header>
         <div className="flex">
             <section>
-                <p>0000 0000 0000 0000</p>
-                <p>FULANO A. CARVALHO</p>
+                <p>{cardNumber}</p>
+                <p>{name}</p>
                 <div>
                     <div>
                         <span>Exp. Date</span>
-                        <p>12/37</p>
+                        <p>{expirityDate}</p>
                     </div>
                     <div>
                         <span>Security Code</span>
-                        <p>567</p>
+                        <p>{SSID}</p>
                     </div>
                 </div>
             </section>
