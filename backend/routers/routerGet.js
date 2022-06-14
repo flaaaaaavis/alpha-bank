@@ -81,5 +81,29 @@ router.get("/transactions", (req, res) => {
 
 });
 
+//Informações do Cartão
+router.get("/card", (req, res) => {
+
+    try {
+
+        const token = req.cookies.token;
+        const user = jwtController.verify(token);
+
+
+        let card = await pool.query(`SELECT * 
+                                        FROM cards 
+                                        WHERE user_id = ${user.userID}`);
+        card = account.rows[0];
+
+        res.status(200).json({ message:"Done and Done", card: card });
+
+    } catch (error) {
+
+        console.log(error); 
+
+    }
+
+});
+
 
 module.exports = router;
