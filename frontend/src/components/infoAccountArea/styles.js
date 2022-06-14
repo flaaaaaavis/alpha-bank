@@ -9,6 +9,8 @@ export const StyledDiv = Styled.div`
 `;
 
 export const StyledTable = Styled.table`
+    font-family: 'Oxygen';
+    font-style: normal;
     font-weight: 400;
     font-size: 36px;
     line-height: 45px;
@@ -21,4 +23,9 @@ export const StyledTable = Styled.table`
 
 export const StyledTitle = Styled.h1`
     text-align: center;
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 61px;
 `;

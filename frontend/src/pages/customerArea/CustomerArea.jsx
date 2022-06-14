@@ -1,5 +1,5 @@
-import ButtonArea from "../buttonArea/ButtonArea";
-import InfoAccountArea from "../infoAccountArea/InfoAccountArea";
+import ButtonArea from "../../components/buttonArea/ButtonArea";
+import InfoAccountArea from "../../components/infoAccountArea/InfoAccountArea";
 import { StyledCustomerArea }from "./styles.js";
 import Header from "../../components/header/header.jsx";
 
