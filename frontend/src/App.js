@@ -3,15 +3,16 @@ import { GlobalStyle } from './style/style.js';
 import { AccountProvider } from "./contexts/AccountContext";
 import { UserProvider } from "./contexts/UserContext"; 
 import { CardProvider } from "./contexts/CardContext";
+import { TransactionsProvider } from "./contexts/TransactionContext";
 
 
 function App() {
   return (
     <>
-      <UserProvider><AccountProvider><CardProvider>      
+      <UserProvider><AccountProvider><CardProvider><TransactionsProvider>
         <GlobalStyle />
         <CustomerArea />
-      </CardProvider></AccountProvider></UserProvider>
+      </TransactionsProvider></CardProvider></AccountProvider></UserProvider>
     </>    
   );
 }
