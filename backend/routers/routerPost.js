@@ -4,7 +4,8 @@ require("dotenv").config({ path: __dirname+"/../.env"});
 const jwt = require('jsonwebtoken');
 const { compare, hashPwd } = require('../src/hashController');
 const pool = require("../database.js")
-import { v4 as uuidv4 } from 'uuid';
+import { stringify, v4 as uuidv4 } from 'uuid';
+import geraRandom from '../src/randomGen';
 
 router.post('/login', (req, res) => {    
 
@@ -70,13 +71,15 @@ router.post("/addUser", async (req, res) => {
         const values = [name, cpf, email, bDate, hashedPassword];
         await pool.query(sql, values);
 
+        res.status(200).json("Usuário criado.");
+
     } catch(error) {
 
         console.log(error)
 
     }
 
-    //Creating Account
+    //Creating Account and Card
     try {
         
         const user = await pool.query(`SELECT id 
@@ -86,15 +89,24 @@ router.post("/addUser", async (req, res) => {
         
         const accountQuery = "INSERT INTO accounts (created_by, created_at, user_id, uuid, balance) values ($1 , NOW()::TIMESTAMP, $1, $2, $3);";
         const accountValues= [user.rows[0].id, uuidv4(), 0.00]
-        await pool.query(accountQuery, accountValues)
+        await pool.query(accountQuery, accountValues);
 
-        const cardQuery = "INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, password, SSID) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4, $5);";
-        const cardValues= [user.rows[0].id, /*NumeroDoCartão*/, ]
+        const cardNumber = ("99999999"+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9)));
+        const SSID = (""+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9)));
+        const ExpDate = "31/12/40"
+        
+        const cardQuery = "INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, SSID) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4);";
+        const cardValues= [ user.rows[0].id, cardNumber, ExpDate, SSID ]
+
+        await pool.query(cardQuery, cardValues);
+
+        res.status(200).json("Cartão e Conta criados.");
+
+    } catch(error) {
+
+        console.log(error)
 
     }
-
-
-    
     
 })
 
