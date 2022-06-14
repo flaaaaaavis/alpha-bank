@@ -5,7 +5,7 @@ function Form2() {
         <h3>Confirme os dados</h3>
         <p>Nome: <span>{}</span></p>
         <p>Conta: <span>{}</span></p>
-        <button><Link to="/form3">Continuar</Link></button>
+        <Link to="/form3"><button>Continuar</button></Link>
     </>
 }
 

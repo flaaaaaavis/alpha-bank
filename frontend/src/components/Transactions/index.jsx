@@ -10,7 +10,6 @@ import { Main, Form, Panel, Table, TableHead, TableBody } from './index'
 function Transactions() {
     return (
         <Main>
-
             <Form>
                 <BrowserRouter>
                     <Routes>
@@ -32,10 +31,10 @@ function Transactions() {
                             <th>Valor</th>
                         </tr>
                     </TableHead>
-                    <TableBody>{}</TableBody>
+                    <TableBody>
+                    </TableBody>
                 </Table>
             </Panel>
-
         </Main>
     )
 }

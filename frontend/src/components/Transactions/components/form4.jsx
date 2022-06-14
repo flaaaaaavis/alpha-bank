@@ -5,7 +5,7 @@ function Form4() {
     return <>
         <img src={Image} alt="" />
         <h3>Transferência concluída</h3>
-        <button><Link to="/">Voltar para conta</Link></button>
+        <Link to="/"><button>Voltar para conta</button></Link>
     </>
 }
 

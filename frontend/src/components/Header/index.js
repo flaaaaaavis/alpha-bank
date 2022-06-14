@@ -5,6 +5,7 @@ export const StyledHeader = Styled.div`
     width: 100vw;
     padding-right: 2%;
     padding-left: 4%;
+    
     background-color: #F6F6F6;
     
     display:flex;
@@ -13,7 +14,7 @@ export const StyledHeader = Styled.div`
 `
 
 export const StyledContainerLeft = Styled.div`
-    width: 30%;
+    width: 32%;
     height: 100%;
 
     display: flex;

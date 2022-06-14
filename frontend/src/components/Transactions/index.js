@@ -1,13 +1,23 @@
 import Styled from 'styled-components';
 
 export const Main = Styled.main`
+    width: 100vw;
+    min-height: 88%;
 
+    background: #D2DCDB;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 `
 
-export const Form = Styled.form`
-    width: 30%;
-    max-width: 500px;
-    height: 80%;
+export const Form = Styled.div`
+    width: 30vw;
+    height: 70vh;
+    border-radius: 20px;
+
     background: #FFFFFF;
 
     display: flex;
@@ -17,9 +27,8 @@ export const Form = Styled.form`
 
     h3 {
         font-family: Oxygen;
-        font-size: 30px;
+        font-size: 1.5em;
         font-weight: 700;
-        line-height: 38px;
         letter-spacing: 0em;
         text-align: center;
         color: #007366;
@@ -27,53 +36,94 @@ export const Form = Styled.form`
     input {
         width: 80%;
         max-width: 340px;
-        height: 59px;
+        height: 10%;
         padding-left: 20px;
+        border-bottom: 1px solid #7A7A7A;
+    }
+    input:hover {
         border-bottom: 2px solid #007366;
+        ::placeholder {
+            color: #007366;
+        }
     }
-    button {
-        width: 426px;
-        max-width: 85%;
-        height: 59px;
-        background: #007366;
-        font-size: 32px;
-        font-weight: 400;
-        line-height: 40px;
-        letter-spacing: 0em;
-        text-align: center;
-        color: #FFFFFF;
+    a {
+        width: 80%;
+        height: 10%;
+        button {
+            width: 100%;
+            height: 100%;
+            background: #007366;
+            font-size: 1em;
+            font-weight: 400;
+            letter-spacing: 0em;
+            text-align: center;
+            color: #FFFFFF;
+        }
     }
+    
 `
 
 export const Panel = Styled.div`
     width: 60%;
-    max-width: 1126px; 
     height: 80%;
+    border-radius: 20px;
     padding: 30px;
+
+    background: #FFFFFF;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: top;
     align-items: left;
     h2 {
-        width: 642px;
-        height: 99px;
+        margin-bottom: 3%;
         font-style: normal;
         font-weight: 700;
-        font-size: 48px;
-        line-height: 61px;
+        font-size: 2em;
         text-align: left;
         color: #7A7A7A;
     }
 `
 
 export const Table = Styled.table`
-    width: 100%;
-    
+    width: 90%;
+    height: 80%;
+    align-self: center;
+
+
+    font-size: 1em;
+    line-height: 1.5em;
+
+    tr { display : table-row}
+    thead { display : table-header-group }
+    td, th { display :  table-cell }
+
+    tbody:before {
+        content: '';
+        display: block;
+        height: 10px;
+    }
 `
 
-export const TableHead = Styled.thead``
+export const TableHead = Styled.thead`
+    display: block;
+    th {
+        font-size: 1.2em;
+    }
+`
 
-export const TableBody = Styled.tbody``
+export const TableBody = Styled.tbody`
+    height: 80%;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+    td {
+        text-align: center;
+    }
+`
 
 // async function allTransactions(userId) {
 //     // send request to backend via fetch and manage response
