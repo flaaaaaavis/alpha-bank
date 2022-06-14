@@ -7,7 +7,7 @@ function Saldo(props) {
         <StyledDiv>
             <StyledSaldo>Saldo em Conta: </StyledSaldo>,
             <StyledShowSaldo>
-                <StyledValue>R$ {props.value}</StyledValue>
+                <StyledValue>R$ 100.000,00 {props.value}</StyledValue>
                 <StyledEye><img src={ eye } alt="esconder senha" /></StyledEye>
             </StyledShowSaldo>
         </StyledDiv>
