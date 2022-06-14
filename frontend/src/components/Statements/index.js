@@ -77,17 +77,17 @@ export async function allStatements() {
         let description = document.createElement('td');
         description.innerText = statement.receiver_account;
 
-        let data = document.createElement('td');
+        let date = document.createElement('td');
         data.innerText = statement.data;
 
         let value = document.createElement('td');
         value.innerText = statement.value;
 
         tr.append(description);
-        tr.append(data);
+        tr.append(date);
         tr.append(value);
 
         document.querySelector('tbody').appendChild(tr);
-    })
-    return true;
+        return true;
+    }) 
 }

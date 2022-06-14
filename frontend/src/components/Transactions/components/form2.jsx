@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-function form2() {
+function Form2() {
     return <>
         <h3>Confirme os dados</h3>
         <p>Nome: <span>{}</span></p>
@@ -9,4 +9,4 @@ function form2() {
     </>
 }
 
-export default form2
+export default Form2

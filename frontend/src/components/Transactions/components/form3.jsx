@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-function form3() {
+function Form3() {
     return <>
         <h3>Quanto irá transferir?</h3>
         <input type="number" min="0.00" step="0.01" placeholder='R$' />
@@ -8,4 +8,4 @@ function form3() {
     </>
 }
 
-export default form3
+export default Form3

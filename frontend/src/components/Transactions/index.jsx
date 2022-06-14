@@ -1,29 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Form1, Form2, Form3, Form4 } from './components'
-import { StyledMain, Form, Panel, Table, TableHead, TableBody } from './index'
+import Form1 from './components/Form1.jsx'
+import Form2 from './components/Form2.jsx'
+import Form3 from './components/Form3.jsx'
+import Form4  from './components/Form4.jsx'
+import { Main, Form, Panel, Table, TableHead, TableBody } from './index'
 
 function Transactions() {
     return (
-        <StyledMain>
+        <Main>
 
             <Form>
                 <BrowserRouter>
-                    <Switch>
-                        <Route path="/form1">
-                            <Form1 />
-                        </Route>
-                        <Route path="/form2">
-                            <Form2 />
-                        </Route>
-                        <Route path="/form3">
-                            <Form3 />
-                        </Route>
-                        <Route path="/form4">
-                            <Form4 />
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route exact path="/" element={<Form1 />}/>
+                        <Route exact path="/form2" element={<Form2 />}/>
+                        <Route exact path="/form3" element={<Form3 />}/>
+                        <Route path="/form4" element={<Form4 />}/>
+                    </Routes>
                 </BrowserRouter>
             </Form>
 
@@ -41,7 +36,7 @@ function Transactions() {
                 </Table>
             </Panel>
 
-        </StyledMain>
+        </Main>
     )
 }
 

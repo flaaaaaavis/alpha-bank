@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-function form1() {
+function Form1() {
     return <>
         <h3>Para quem esta transferindo?</h3>
         <input type="text" length="11" placeholder='CPF' />
@@ -9,4 +9,4 @@ function form1() {
     </>
 }
 
-export default form1
+export default Form1
