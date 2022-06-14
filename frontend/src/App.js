@@ -1,4 +1,6 @@
-import CardArea from './pages/CardArea.jsx'
+import DepositAmount from './pages/DepositAmount.jsx'
+//import DepositArea from './pages/DepositArea'
+//import CardArea from './pages/CardArea'
 import { GlobalStyle } from './style/style.js';
 import { AccountProvider } from "./contexts/AccountContext";
 import { UserProvider } from "./contexts/UserContext"; 
@@ -11,7 +13,7 @@ function App() {
     <>
       <UserProvider><AccountProvider><CardProvider><TransactionsProvider>
         <GlobalStyle />
-        <CardArea />
+        <DepositAmount />
       </TransactionsProvider></CardProvider></AccountProvider></UserProvider>
     </>    
   );

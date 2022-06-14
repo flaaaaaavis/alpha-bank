@@ -12,7 +12,7 @@ function TransactionsBox() {
         <p>Últimas Transações</p>
         <div>
           {
-            transactions.map(transaction => <CardAreaTransactionCard description={transaction.description} value={transaction.value} />)
+            transactions.map((transaction, index) => <CardAreaTransactionCard key={index} description={transaction.description} value={transaction.value} />)
           }
         </div>
     </StyledTransactionsBox>
