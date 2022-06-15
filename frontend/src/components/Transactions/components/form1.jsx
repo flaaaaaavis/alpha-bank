@@ -8,7 +8,7 @@ function Form1({ showData, setShowData }) {
 
         if (cpf && account) {
             await fetch('http://localhost:3000/accountByCPFnAccount', {
-                method: 'GET',
+                method: 'POST',
                 body: {
                     cpf: cpf,
                     number: account
@@ -25,7 +25,7 @@ function Form1({ showData, setShowData }) {
 
         } else if (cpf && !account) {
             await fetch('http://localhost:3000/accountByCPF', {
-                method: 'GET',
+                method: 'POST',
                 body: {
                     cpf: cpf
                 }
@@ -40,7 +40,7 @@ function Form1({ showData, setShowData }) {
             })
         } else if (account && !cpf ) {
             await fetch('http://localhost:3000/accountByNumber', {
-                method: 'GET',
+                method: 'POST',
                 body: {
                     account: account
                 }
