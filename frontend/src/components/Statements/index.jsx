@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { StyledMain, ContainerTop, StyledBalance, StyledAccountBalanceTitle, StyledAccountBalance, StyledBalanceRight, StyledEyeButton, {/* StyledStatementsFilter, StyledFilterOption*/}, StyledStatementsTable, StyledTableHead, StyledTableBody } from './index'
+import { StyledMain, ContainerTop, StyledBalance, StyledAccountBalanceTitle, StyledAccountBalance, StyledBalanceRight, StyledEyeButton, StyledStatementsTable, StyledTableHead, StyledTableBody } from './index'
+/* StyledStatementsFilter, StyledFilterOption*/
 
 import eyeButton from '../../images/eyeButton.png'
 import closedEyeButton from '../../images/closedEyeButton.png'
