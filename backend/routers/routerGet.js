@@ -37,38 +37,38 @@ router.get("/account", async (req, res) => {
     try {
 
         const token = req.cookies.token;
-        const user = jwtController.verify(token);
+        const user = jwtController.verify(token, process.env.SECRET);
                 
         let account = await pool.query(`SELECT * 
                                         FROM accounts 
-                                        WHERE user_id = ${user}`);
+                                        WHERE user_id = ${user.user_id}`);
         account = account.rows[0];
         res.status(200).json({ message:"Done and Done", account });
 
     } catch (error) {
 
-        console.log(error); 
+        console.log(error);
 
     }
 
 });
 
 // Informações das Transações:
-router.get("/allStatements", async (req, res) => {
+router.get("/transactions", async (req, res) => {
     try {
         const token = req.cookies.token;
-        const user = jwtController.verify(token);
+        const user = jwtController.verify(token, process.env.SECRET);
 
         let account = await pool.query(`SELECT id 
                                         FROM accounts 
-                                        WHERE user_id = ${user.userID}`);
+                                        WHERE user_id = ${user.user_id}`);
         account = account.rows[0];
 
         const transactions = await pool.query(`SELECT * 
                                                FROM transactions 
-                                               WHERE sender_id = ${account} OR receiver_id = ${account}`);
+                                               WHERE sender_account = ${account.id} OR receiver_account = ${account.id}`);
 
-        if (transactions.rows === []) res.status(401).json({ message:"Nenhuma transação realizada"});
+        if (transactions.rows[0] === undefined) res.status(401).json({ message:"Nenhuma transação realizada"});
         res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
 
     } catch (error) {
@@ -76,27 +76,27 @@ router.get("/allStatements", async (req, res) => {
     }
 });
 
-router.get("/AllTransactions", async (req, res) => {
-    try {
-        const token = req.cookies.token;
-        const user = jwtController.verify(token);
+// router.get("/AllTransactions", async (req, res) => {
+//     try {
+//         const token = req.cookies.token;
+//         const user = jwtController.verify(token, process.env.SECRET);
 
-        let account = await pool.query(`SELECT id 
-                                        FROM accounts 
-                                        WHERE user_id = ${user.userID}`);
-        account = account.rows[0];
+//         let account = await pool.query(`SELECT id 
+//                                         FROM accounts 
+//                                         WHERE user_id = ${user.user_id}`);
+//         account = account.rows[0];
 
-        const transactions = await pool.query(`SELECT * 
-                                               FROM transactions 
-                                               WHERE sender_id = ${account};`);
+//         const transactions = await pool.query(`SELECT * 
+//                                                FROM transactions 
+//                                                WHERE sender_id = ${account};`);
 
-        if (transactions.rows === []) res.status(401).json({ message:"Nenhuma transação realizada"});
-        res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
+//         if (transactions.rows === []) res.status(401).json({ message:"Nenhuma transação realizada"});
+//         res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
 
-    } catch (error) {
-        console.log(error); 
-    }
-});
+//     } catch (error) {
+//         console.log(error); 
+//     }
+// });
 
 //Informações do Cartão
 router.get("/card", async (req, res) => {
@@ -104,13 +104,13 @@ router.get("/card", async (req, res) => {
     try {
 
         const token = req.cookies.token;
-        const user = jwtController.verify(token);
-
+        const user = jwtController.verify(token, process.env.SECRET);
+        console.log(user)
 
         let card = await pool.query(`SELECT * 
                                         FROM cards 
-                                        WHERE user_id = ${user.userID}`);
-        card = account.rows[0];
+                                        WHERE user_id = (${user.user_id})`);
+        card = card.rows[0];
 
         res.status(200).json({ message:"Done and Done", card: card });
 

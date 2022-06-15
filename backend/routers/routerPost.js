@@ -158,10 +158,8 @@ router.post('/findReceiver', async (req, res) => {
         default:
             console.log('defaultou')
             res.status(401).json({message: "Qq você ta fazendo amigo?"})
-    }  
-
-    if (receiver.rows[0] === undefined) res.status(401).json({message: "Usuário não encontrado"})
-
+    }
+    
     res.status(200).json({ message: "usuario encontrado", user: receiver.rows[0] })
 
 })
@@ -197,19 +195,20 @@ router.post("/accountByCPF", async (req, res) => {
 
     try {
         const cpf = req.body.cpf;
+        console.log(cpf)
 
-        let user = await pool.query(`SELECT * 
+        let user = await pool.query(`SELECT id, name
                                     FROM users 
-                                    WHERE CPF = ${cpf}`);
+                                    WHERE cpf = ('${cpf}')`);
         user = user.rows[0];
 
-        let account = await pool.query(`SELECT * 
+        let account = await pool.query(`SELECT number
                                         FROM accounts 
                                         WHERE user_id = ${user.id}`);
         account = account.rows[0];
 
 
-        res.status(200).json({ message:"Done and Done", "user": user,"account": account});
+        res.status(200).json({ message:"Done and Done", "user": user.name,"account": account.number});
 
     } catch (error) {
 
