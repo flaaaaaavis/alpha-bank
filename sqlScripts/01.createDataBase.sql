@@ -93,3 +93,6 @@ ALTER TABLE "transactions" ADD CONSTRAINT "transactions_fk1" FOREIGN KEY ("sende
 ALTER TABLE "transactions" ADD CONSTRAINT "transactions_fk2" FOREIGN KEY ("receiver_account") REFERENCES "accounts"("number");
 
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+
+ALTER TABLE IF EXISTS public.users
+    ADD COLUMN email character varying(100) UNIQUE NOT NULL;
