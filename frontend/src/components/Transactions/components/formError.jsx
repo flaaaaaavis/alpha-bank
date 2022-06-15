@@ -7,6 +7,7 @@ function FormError() {
             "name": "",
             "account": ""
         })
+        return ('/')
     }
     return <>
         <img src={Image} alt="" />
