@@ -1,9 +1,6 @@
 CREATE TABLE public.users (
-	"created_by" serial NOT NULL,
 	"created_at" TIMESTAMP NOT NULL,
-	"updated_by" integer,
 	"updated_at" TIMESTAMP,
-	"deleted_by" integer,
 	"deleted_at" TIMESTAMP,
 	"id" serial NOT NULL,
 	"CPF" varchar(11) NOT NULL,
@@ -14,6 +11,8 @@ CREATE TABLE public.users (
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 CREATE TABLE public.accounts (
 	"created_by" integer NOT NULL,
@@ -32,6 +31,8 @@ CREATE TABLE public.accounts (
   OIDS=FALSE
 );
 
+
+
 CREATE TABLE public.cards (
 	"created_by" integer NOT NULL,
 	"created_at" TIMESTAMP NOT NULL,
@@ -39,16 +40,17 @@ CREATE TABLE public.cards (
 	"updated_at" TIMESTAMP,
 	"deleted_by" integer,
 	"deleted_at" TIMESTAMP,
-	"account_id" integer NOT NULL,
+	"user_id" integer NOT NULL,
 	"id" serial NOT NULL,
 	"number" integer NOT NULL UNIQUE,
 	"expirity_date" DATE NOT NULL,
-	"password" numeric(6) NOT NULL,
 	"SSID" numeric(3) NOT NULL,
 	CONSTRAINT "cards_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 CREATE TABLE public.transactions (
 	"created_by" integer NOT NULL,
@@ -57,10 +59,13 @@ CREATE TABLE public.transactions (
 	"receiver_account" integer NOT NULL,
 	"id" serial NOT NULL,
 	"value" numeric(9.2) NOT NULL,
-	"date" TIMESTAMP NOT NULL
+	"date" TIMESTAMP NOT NULL,
+	"description" varchar(100) NOT NULL
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 CREATE TABLE public.sessions (
 	"jwt" varchar(200) NOT NULL,
@@ -73,24 +78,18 @@ CREATE TABLE public.sessions (
 
 
 
-ALTER TABLE accounts ADD CONSTRAINT "accounts_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");
-ALTER TABLE accounts ADD CONSTRAINT "accounts_fk1" FOREIGN KEY ("updated_by") REFERENCES "users"("id");
-ALTER TABLE accounts ADD CONSTRAINT "accounts_fk2" FOREIGN KEY ("deleted_by") REFERENCES "users"("id");
-ALTER TABLE accounts ADD CONSTRAINT "accounts_fk3" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "accounts" ADD CONSTRAINT "accounts_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");
+ALTER TABLE "accounts" ADD CONSTRAINT "accounts_fk1" FOREIGN KEY ("updated_by") REFERENCES "users"("id");
+ALTER TABLE "accounts" ADD CONSTRAINT "accounts_fk2" FOREIGN KEY ("deleted_by") REFERENCES "users"("id");
+ALTER TABLE "accounts" ADD CONSTRAINT "accounts_fk3" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 
-ALTER TABLE cards ADD CONSTRAINT "cards_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");
-ALTER TABLE cards ADD CONSTRAINT "cards_fk1" FOREIGN KEY ("updated_by") REFERENCES "users"("id");
-ALTER TABLE cards ADD CONSTRAINT "cards_fk2" FOREIGN KEY ("deleted_by") REFERENCES "users"("id");
-ALTER TABLE cards ADD CONSTRAINT "cards_fk3" FOREIGN KEY ("account_id") REFERENCES "accounts"("id");
+ALTER TABLE "cards" ADD CONSTRAINT "cards_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");
+ALTER TABLE "cards" ADD CONSTRAINT "cards_fk1" FOREIGN KEY ("updated_by") REFERENCES "users"("id");
+ALTER TABLE "cards" ADD CONSTRAINT "cards_fk2" FOREIGN KEY ("deleted_by") REFERENCES "users"("id");
+ALTER TABLE "cards" ADD CONSTRAINT "cards_fk3" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 
-ALTER TABLE transactions ADD CONSTRAINT "transactions_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");
-ALTER TABLE transactions ADD CONSTRAINT "transactions_fk1" FOREIGN KEY ("sender_account") REFERENCES "accounts"("number");
-ALTER TABLE transactions ADD CONSTRAINT "transactions_fk2" FOREIGN KEY ("receiver_account") REFERENCES "accounts"("number");
+ALTER TABLE "transactions" ADD CONSTRAINT "transactions_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");
+ALTER TABLE "transactions" ADD CONSTRAINT "transactions_fk1" FOREIGN KEY ("sender_account") REFERENCES "accounts"("number");
+ALTER TABLE "transactions" ADD CONSTRAINT "transactions_fk2" FOREIGN KEY ("receiver_account") REFERENCES "accounts"("number");
 
-ALTER TABLE sessions ADD CONSTRAINT "sessions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
-
-
-
-
-
-
+ALTER TABLE "sessions" ADD CONSTRAINT "sessions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
