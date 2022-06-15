@@ -7,11 +7,6 @@ function Form1({ showData, setShowData }) {
     const [account, setAccount] = useState('');
 
     async function getData() {
-        console.log('Teste')
-        const cpf = document.getElementById('cpf').value
-        const account = document.getElementById('account').value
-
-
         if (cpf && account) {
             await fetch('http://localhost:5000/findReceiver', {
                 method: 'POST',
