@@ -159,17 +159,11 @@ router.post('/findReceiver', async (req, res) => {
             console.log('defaultou')
             res.status(401).json({message: "Qq você ta fazendo amigo?"})
     }  
-      
+
     if (receiver.rows[0] === undefined) res.status(401).json({message: "Usuário não encontrado"})
 
     res.status(200).json({ message: "usuario encontrado", user: receiver.rows[0] })
 
-})
-
-                            // (`SELECT accounts.number, users.name  
-                            //     FROM (users
-                            //     INNER JOIN name ON users.name = ${name}
-                            //     INNER JOIN accountNumber on users.accountName = 
-                            //     )`);
+});
 
 module.exports = router;
