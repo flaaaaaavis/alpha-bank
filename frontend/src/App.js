@@ -5,8 +5,8 @@ import { GlobalStyle } from './style/style.js';
 //import RegisterPage from './pages/RegisterPage.jsx';
 //import RecoverPage from './pages/RecoverPage.jsx';
 //import Statements from './pages/Statements.jsx'
-import Transactions from './pages/Transactions.jsx'
-//import DepositAmount from './pages/DepositAmount.jsx'
+//import Transactions from './pages/Transactions.jsx'
+import DepositAmount from './pages/DepositAmount.jsx'
 //import CardArea from './pages/CardArea.jsx'
 import { AccountProvider } from "./contexts/AccountContext";
 import { UserProvider } from "./contexts/UserContext"; 
@@ -19,7 +19,7 @@ function App() {
     <AccountProvider><UserProvider><CardProvider><TransactionsProvider>
     
       <GlobalStyle />
-      <Transactions />
+      <DepositAmount />
 
     </TransactionsProvider></CardProvider></UserProvider></AccountProvider>
     </>    

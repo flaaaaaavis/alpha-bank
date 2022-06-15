@@ -21,19 +21,14 @@ router.post('/login', async (req, res) => {
         console.log(dbUserPassword)
         if (compare(password, dbUserPassword)) {
             try {
-                console.log("TAMO NO TRY CARALHO PORRA");
-
                 // Gerando Token
                 let loggedUser = await pool.query(`SELECT id 
                                                      FROM users 
                                                      WHERE email = '${email}' 
                                                      AND deleted_at IS NULL`);
-                loggedUser = loggedUser.rows[0].id;                                                     
-
-                console.log("TAMO NO TRY CARALHO PORRA " +loggedUser)
+                loggedUser = loggedUser.rows[0].id;
                                                      
                 const userToken = jwt.sign({ user_id: loggedUser }, process.env.SECRET);
-                console.log("TAMO NO TRY CARALHO PORRA TOKEN " +userToken)
                 // Gerando Sessão
                 const session = { jwt: userToken, user_id: loggedUser };
 
