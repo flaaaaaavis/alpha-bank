@@ -124,107 +124,107 @@ let cards = [
 ]
 
 router.put('/deleteUser', async (req, res) => {
-    // try {
-    //     const sql = "UPDATE users SET deleted_by = $1, deleted_at = $2 WHERE user_id = $3;";
-    //     const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
-    //     await pool.query(sql, values);
-    //     console.log("Remoção de usuário bem sucedida!");
-
-    //     const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
-    //     const valuesResult = [false];
-    //     const result = await pool.query(sqlResult, valuesResult);
-
-    //     res.send(result)
-    // } catch (error) {
-    //     res.status(400).send(error)
-    // }
-
-    let users2
     try {
-        users2 = users.map(user => {
-            if(user.id === req.body.id) {
-                user.deleted_by = req.body.deletedBy;
-                user.deleted_at = req.body.deletedAt;
-                console.log(user);
-                return user;
-            }
-            return user;
-        })
+        const sql = "UPDATE users SET deleted_by = $1, deleted_at = $2 WHERE user_id = $3;";
+        const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
+        await pool.query(sql, values);
+        console.log("Remoção de usuário bem sucedida!");
+
+        const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
+        const valuesResult = [false];
+        const result = await pool.query(sqlResult, valuesResult);
+
+        res.send(result)
     } catch (error) {
         res.status(400).send(error)
-    } finally {
-        users = users2;
-        res.sendStatus(200);
     }
+
+    // let users2
+    // try {
+    //     users2 = users.map(user => {
+    //         if(user.id === req.body.id) {
+    //             user.deleted_by = req.body.deletedBy;
+    //             user.deleted_at = req.body.deletedAt;
+    //             console.log(user);
+    //             return user;
+    //         }
+    //         return user;
+    //     })
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // } finally {
+    //     users = users2;
+    //     res.sendStatus(200);
+    // }
 });
 
 router.put('/deleteAccount', async (req, res) => {
-    // try {
-    //     const sql = "UPDATE accounts SET deleted_by = $1, deleted_at = $2 WHERE account_id = $3;";
-    //     const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
-    //     await pool.query(sql, values);
-    //     console.log("Deleção de conta bem sucedida!");
-
-    //     const sqlResult = "SELECT * FROM accounts WHERE deleted = $1;";
-    //     const valuesResult = [false];
-    //     const result = await pool.query(sqlResult, valuesResult);
-
-    //     res.send(result)
-    // } catch (error) {
-    //     res.status(400).send(error)
-    // }
-    let accounts2
     try {
-        accounts2 = accounts.map(account => {
-            if(account.id === req.body.accountId) {
-                account.deleted_by = req.body.deletedBy;
-                account.deleted_at = req.body.deletedAt;
-                console.log(account);
-                return account;
-            }
-            return account;
-        })
+        const sql = "UPDATE accounts SET deleted_by = $1, deleted_at = $2 WHERE account_id = $3;";
+        const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
+        await pool.query(sql, values);
+        console.log("Deleção de conta bem sucedida!");
+
+        const sqlResult = "SELECT * FROM accounts WHERE deleted = $1;";
+        const valuesResult = [false];
+        const result = await pool.query(sqlResult, valuesResult);
+
+        res.send(result)
     } catch (error) {
         res.status(400).send(error)
-    } finally {
-        accounts = accounts2;
-        res.sendStatus(200);
     }
+    // let accounts2
+    // try {
+    //     accounts2 = accounts.map(account => {
+    //         if(account.id === req.body.accountId) {
+    //             account.deleted_by = req.body.deletedBy;
+    //             account.deleted_at = req.body.deletedAt;
+    //             console.log(account);
+    //             return account;
+    //         }
+    //         return account;
+    //     })
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // } finally {
+    //     accounts = accounts2;
+    //     res.sendStatus(200);
+    // }
 })
 
 router.put('/deleteCard', async (req, res) => {
-    // try {
-    //     const sql = "UPDATE cards SET deleted_by = $1, deleted_at = $2 WHERE card_id = $3;";
-    //     const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
-    //     await pool.query(sql, values);
-    //     console.log("Deleção de cartão bem sucedida!");
-
-    //     const sqlResult = "SELECT * FROM cards WHERE deleted = $1;";
-    //     const valuesResult = [false];
-    //     const result = await pool.query(sqlResult, valuesResult);
-
-    //     res.send(result)
-    // } catch (error) {
-    //     res.status(400).send(error)
-    // }
-
-    let cards2
     try {
-        cards2 = cards.map(card => {
-            if(card.id === req.body.cardId) {
-                card.deleted_by = req.body.deletedBy;
-                card.deleted_at = req.body.deletedAt;
-                console.log(card);
-                return card;
-            }
-            return card;
-        })
+        const sql = "UPDATE cards SET deleted_by = $1, deleted_at = $2 WHERE card_id = $3;";
+        const values = [req.body.deletedBy, req.body.deletedAt, req.body.id];
+        await pool.query(sql, values);
+        console.log("Deleção de cartão bem sucedida!");
+
+        const sqlResult = "SELECT * FROM cards WHERE deleted = $1;";
+        const valuesResult = [false];
+        const result = await pool.query(sqlResult, valuesResult);
+
+        res.send(result)
     } catch (error) {
         res.status(400).send(error)
-    } finally {
-        cards = cards2;
-        res.sendStatus(200);
     }
+
+    // let cards2
+    // try {
+    //     cards2 = cards.map(card => {
+    //         if(card.id === req.body.cardId) {
+    //             card.deleted_by = req.body.deletedBy;
+    //             card.deleted_at = req.body.deletedAt;
+    //             console.log(card);
+    //             return card;
+    //         }
+    //         return card;
+    //     })
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // } finally {
+    //     cards = cards2;
+    //     res.sendStatus(200);
+    // }
 })
 
 module.exports = router;
