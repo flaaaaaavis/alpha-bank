@@ -12,28 +12,30 @@ router.post('/login', async (req, res) => {
 
     const { email, password } = req.body;
     try {
-        //refatorar pós banco montado: e se o usuário não existir qual vai ser o retorno?
-        const dbUserPassword = await pool.query(`SELECT password 
+        let dbUserPassword = await pool.query(`SELECT password 
                                                  FROM users 
-                                                 WHERE email = ${email} 
-                                                 AND deleted_at=null;`)   
-
-        if (compare(password, dbUserPassword.rows[0].password)) {
-
+                                                 WHERE email = '${email}' 
+                                                 AND deleted_at IS NULL`);
+        dbUserPassword = dbUserPassword.rows[0].password;
+        if (compare(password, dbUserPassword)) {
             try {
+                console.log("TAMO NO TRY CARALHO PORRA")
 
                 // Gerando Token
-                const loggedUser = await pool.query(`SELECT id 
+                let loggedUser = await pool.query(`SELECT id 
                                                      FROM users 
-                                                     WHERE email = ${email} 
-                                                     AND deleted_by=null;`)
-                                                     
-                const userToken = jwt.sign({ user_id: loggedUser.rows[0] }, process.env.SECRET);
-                
-                // Gerando Sessão
-                const session = { jwt: userToken, user_id: loggedUser.rows[0] };
+                                                     WHERE email = '${email}' 
+                                                     AND deleted_at IS NULL`);
+                loggedUser = loggedUser.rows[0].id;                                                     
 
-                await pool.query(`INSERT INTO sessions (jwt, user_id) VALUES (${session.jwt}, ${session.user_id});`)
+                console.log("TAMO NO TRY CARALHO PORRA " +loggedUser)
+                                                     
+                const userToken = jwt.sign({ user_id: loggedUser }, process.env.SECRET);
+                console.log("TAMO NO TRY CARALHO PORRA TOKEN " +userToken)
+                // Gerando Sessão
+                const session = { jwt: userToken, user_id: loggedUser };
+
+                await pool.query(`INSERT INTO sessions (jwt, user_id) VALUES ('${session.jwt}', ${session.user_id})`)
 
                 // Gerando Cookie
                 const thirtyDays = 1000 * 60 * 60 * 24 * 30;
