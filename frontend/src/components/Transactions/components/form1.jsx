@@ -2,12 +2,13 @@ import {Link} from 'react-router-dom'
 
 function Form1({ showData, setShowData }) {
     async function getData() {
+        console.log('Teste')
         const cpf = document.getElementById('cpf').value
         const account = document.getElementById('account').value
 
 
         if (cpf && account) {
-            await fetch('http://localhost:3000/accountByCPFnAccount', {
+            await fetch('http://localhost:4000/accountByCPFnAccount', {
                 method: 'POST',
                 body: {
                     cpf: cpf,
@@ -24,7 +25,7 @@ function Form1({ showData, setShowData }) {
             })
 
         } else if (cpf && !account) {
-            await fetch('http://localhost:3000/accountByCPF', {
+            await fetch('http://localhost:4000/accountByCPF', {
                 method: 'POST',
                 body: {
                     cpf: cpf
@@ -39,7 +40,7 @@ function Form1({ showData, setShowData }) {
                 return ('/form2')
             })
         } else if (account && !cpf ) {
-            await fetch('http://localhost:3000/accountByNumber', {
+            await fetch('http://localhost:4000/accountByNumber', {
                 method: 'POST',
                 body: {
                     account: account
@@ -64,7 +65,7 @@ function Form1({ showData, setShowData }) {
         <input id='cpf' type="text" length="11" placeholder='CPF' />
         <p>ou</p>
         <input id='account' type="text" placeholder='Código da Conta' />
-        <Link to={getData()}><button>Continuar</button></Link>
+        <Link to={getData}><button>Continuar</button></Link>
     </>
 }
 
