@@ -9,8 +9,8 @@ router.get("/checkSession", async (req, res) => {
 
     try {
 
-        const token = req.cookies.token;             
-        if (token === null) res.status(401).json({ auth:false , message:"Token não encontrada" });
+        const token = req.cookies.token;        
+        if (token === undefined) res.status(401).json({ auth:false , message:"Token não encontrada" });
         
         const user = await pool.query(`SELECT user_id 
                                        FROM sessions 
