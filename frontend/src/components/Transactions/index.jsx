@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import Form1 from './components/Form1.jsx'
-import Form2 from './components/Form2.jsx'
-import Form3 from './components/Form3.jsx'
-import Form4  from './components/Form4.jsx'
+import Form1 from './components/form1.jsx'
+import Form2 from './components/form2.jsx'
+import Form3 from './components/form3.jsx'
+import Form4  from './components/form4.jsx'
 import { Main, Form, Panel, Table, TableHead, TableBody } from './index'
 
 function Transactions() {

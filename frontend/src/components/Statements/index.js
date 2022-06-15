@@ -53,7 +53,7 @@ export const StyledAccountBalanceTitle = Styled.h2``
 export const StyledAccountBalance = Styled.h2``
 
 export const StyledEyeButton = Styled.img`
-    height: 35%;
+    width: 10%;
 
     cursor: pointer;
 `

@@ -8,8 +8,11 @@ import closedEyeButton from '../../images/closedEyeButton.png'
 function Statements() {
     const [open, setOpen] = useState(eyeButton)
     function changeImage() {
-        if( open === eyeButton ) setOpen(closedEyeButton)
-        else setOpen(eyeButton)
+        if( open === eyeButton ) {
+            setOpen(closedEyeButton)
+        } else {
+            setOpen(eyeButton)
+        }
     }
     return (
         <StyledMain>
