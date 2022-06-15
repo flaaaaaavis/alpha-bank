@@ -11,10 +11,16 @@ import { TransactionsProvider } from "./contexts/TransactionContext";
 function App() {
   return (
     <>
-      <UserProvider><AccountProvider><CardProvider><TransactionsProvider>
-        <GlobalStyle />
-        <DepositAmount />
-      </TransactionsProvider></CardProvider></AccountProvider></UserProvider>
+      <UserProvider>
+        <AccountProvider>
+          <CardProvider>
+            <TransactionsProvider>
+              <GlobalStyle />
+              <DepositAmount />
+            </TransactionsProvider>
+          </CardProvider>
+        </AccountProvider>
+      </UserProvider>
     </>    
   );
 }
