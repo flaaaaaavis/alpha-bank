@@ -158,10 +158,8 @@ router.post('/findReceiver', async (req, res) => {
         default:
             console.log('defaultou')
             res.status(401).json({message: "Qq você ta fazendo amigo?"})
-    }  
-
-    if (receiver.rows[0] === undefined) res.status(401).json({message: "Usuário não encontrado"})
-
+    }
+    
     res.status(200).json({ message: "usuario encontrado", user: receiver.rows[0] })
 
 })
