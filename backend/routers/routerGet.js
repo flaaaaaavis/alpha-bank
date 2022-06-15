@@ -5,12 +5,12 @@ const pool = require("../database");
 const jwtController = require('jsonwebtoken');
 
 //Checar Sessão Existente:
-router.get("/checkSession", (req, res) => {
+router.get("/checkSession", async (req, res) => {
 
     try {
 
-        const token = req.cookies.token;             
-        if (token === null) res.status(401).json({ auth:false , message:"Token não encontrada" });
+        const token = req.cookies.token;        
+        if (token === undefined) res.status(401).json({ auth:false , message:"Token não encontrada" });
         
         const user = await pool.query(`SELECT user_id 
                                        FROM sessions 
@@ -31,7 +31,7 @@ router.get("/checkSession", (req, res) => {
 });
 
 // Informações da Conta:
-router.get("/account", (req, res) => {
+router.get("/account", async (req, res) => {
 
     try {
 
@@ -130,7 +130,7 @@ router.get("/accountByNumber", async (req, res) => {
 });
 
 // Informações das Transações:
-router.get("/allStatements", (req, res) => {
+router.get("/allStatements", async (req, res) => {
     try {
         const token = req.cookies.token;
         const user = jwtController.verify(token);
@@ -152,7 +152,7 @@ router.get("/allStatements", (req, res) => {
     }
 });
 
-router.get("/AllTransactions", (req, res) => {
+router.get("/AllTransactions", async (req, res) => {
     try {
         const token = req.cookies.token;
         const user = jwtController.verify(token);
@@ -175,7 +175,7 @@ router.get("/AllTransactions", (req, res) => {
 });
 
 //Informações do Cartão
-router.get("/card", (req, res) => {
+router.get("/card", async (req, res) => {
 
     try {
 

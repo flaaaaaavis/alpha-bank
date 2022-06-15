@@ -3,11 +3,11 @@ const router = EXPRESS.Router();
 require("dotenv").config({ path: __dirname+"/../.env"});
 const jwt = require('jsonwebtoken');
 const { compare, hashPwd } = require('../src/hashController');
-const pool = require("../database.js")
-import { stringify, v4 as uuidv4 } from 'uuid';
-import geraRandom from '../src/randomGen';
+const pool = require("../database.js");
+const { v4: uuidv4 } = require('uuid')
+const geraRandom = require('../src/randomGen');
 
-router.post('/login', (req, res) => {    
+router.post('/login', async (req, res) => { 
 
     const { email, password } = req.body;
     try {

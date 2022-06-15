@@ -4,7 +4,7 @@ require('dotenv').config()
 const pool = new Pool({
     user: 'postgres',
     password: process.env.DATABASE_PASS,
-    database: 'AlphaBank',
+    database: 'alpha_bank',
     host: 'localhost',
     port: 5432
 })
