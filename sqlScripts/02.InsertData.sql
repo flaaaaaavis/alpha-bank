@@ -1,6 +1,15 @@
-INSERT INTO users( CPF, name, bdate, password) VALUES ( 
+INSERT INTO users( CPF, name, email, bdate, password) VALUES ( 
     12345678999, 
-    "Jóni Belchior Feitosa", 
+    "Jóni Belchior Feitosa",
+    "victoria@gmail.com",
+    "2002-02-01", 
+    "d230dab8-854e-4e3b-9c54-77bb2780567a" 
+);
+
+INSERT INTO users ( name, CPF , email, bdate, password) VALUES (  
+    "Jóni Belchior Feitosa",
+	"12345678999",
+    "victoria@gmail.com",
     "2002-02-01", 
     "d230dab8-854e-4e3b-9c54-77bb2780567a" 
 );
