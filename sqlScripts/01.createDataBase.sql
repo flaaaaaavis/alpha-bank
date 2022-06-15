@@ -15,8 +15,6 @@ CREATE TABLE public.users (
   OIDS=FALSE
 );
 
-
-
 CREATE TABLE public.accounts (
 	"created_by" integer NOT NULL,
 	"created_at" TIMESTAMP NOT NULL,
@@ -33,8 +31,6 @@ CREATE TABLE public.accounts (
 ) WITH (
   OIDS=FALSE
 );
-
-
 
 CREATE TABLE public.cards (
 	"created_by" integer NOT NULL,
@@ -54,8 +50,6 @@ CREATE TABLE public.cards (
   OIDS=FALSE
 );
 
-
-
 CREATE TABLE public.transactions (
 	"created_by" integer NOT NULL,
 	"created_at" TIMESTAMP NOT NULL,
@@ -67,8 +61,6 @@ CREATE TABLE public.transactions (
 ) WITH (
   OIDS=FALSE
 );
-
-
 
 CREATE TABLE public.sessions (
 	"jwt" varchar(200) NOT NULL,
