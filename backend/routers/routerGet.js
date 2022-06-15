@@ -53,7 +53,7 @@ router.get("/account", async (req, res) => {
 
 });
 
-router.get("/accountByCPFnAccount", async (req, res) => {
+router.post("/accountByCPFnAccount", async (req, res) => {
 
     try {
         const cpf = req.body.cpf;
@@ -80,7 +80,7 @@ router.get("/accountByCPFnAccount", async (req, res) => {
 
 });
 
-router.get("/accountByCPF", async (req, res) => {
+router.post("/accountByCPF", async (req, res) => {
 
     try {
         const cpf = req.body.cpf;
@@ -106,7 +106,7 @@ router.get("/accountByCPF", async (req, res) => {
 
 });
 
-router.get("/accountByNumber", async (req, res) => {
+router.post("/accountByNumber", async (req, res) => {
 
     try {
         const accountNumber = req.body.number;

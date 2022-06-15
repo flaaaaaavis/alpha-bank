@@ -10,11 +10,6 @@ import Form4  from './components/form4.jsx'
 import { Main, Form, Panel, Table, TableHead, TableBody } from './index'
 
 function Transactions() {
-    let tranferData = {
-        "CPF": "",
-        "number": "",
-        "value": "",
-    }
     const [showData, setShowData] = useState({
         "name": "",
         "account": ""
