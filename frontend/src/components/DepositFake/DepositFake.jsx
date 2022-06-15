@@ -8,10 +8,14 @@ function DepositFake() {
   const [amount, setAmount] = useState('');
 
   async function handleDeposit() {
+    
     const options = {
       method: 'POST',
-      body: {num}
+      body: {account_number: number, amount: amount},
     }
+
+    fetch('http://localhost/deposit', options)
+
   }
 
   return (
