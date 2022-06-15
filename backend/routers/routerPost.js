@@ -6,6 +6,7 @@ const { compare, hashPwd } = require('../src/hashController');
 const pool = require("../database.js");
 const { v4: uuidv4 } = require('uuid')
 const geraRandom = require('../src/randomGen');
+const { json } = require("express");
 
 router.post('/login', async (req, res) => { 
 
@@ -67,11 +68,12 @@ router.post("/addUser", async (req, res) => {
     //Creating the User
     try {
 
-        const sql = "INSERT INTO users (name, cpf, email, bdate, password) VALUES ($1, $2, $3, $4, $5);";
-        const values = [name, cpf, email, bDate, hashedPassword];
-        await pool.query(sql, values);
+        console.log([name, cpf, email, bDate, hashedPassword]);
 
-        res.status(200).json("Usuário criado.");
+        const sql = `INSERT INTO users(name, cpf, email, bdate, password, created_at)
+                                VALUES($1, $2, $3, $4, $5, NOW()::TIMESTAMP)
+                                RETURNING id`;
+        const values = [name, cpf, email, bDate, hashedPassword];
 
     } catch(error) {
 
@@ -82,25 +84,26 @@ router.post("/addUser", async (req, res) => {
     //Creating Account and Card
     try {
         
-        const user = await pool.query(`SELECT id 
-                                       FROM users 
-                                       WHERE email = ${email} 
-                                       AND deleted_by=null;`);
-        
+        let user = await pool.query(`SELECT id 
+                                    FROM users 
+                                    WHERE email = '${email}' 
+                                    AND deleted_at IS NULL`)
+        user = user.rows[0].id;
+
         const accountQuery = "INSERT INTO accounts (created_by, created_at, user_id, uuid, balance) values ($1 , NOW()::TIMESTAMP, $1, $2, $3);";
-        const accountValues= [user.rows[0].id, uuidv4(), 0.00]
+        const accountValues= [user, uuidv4(), 0.00]
         await pool.query(accountQuery, accountValues);
 
         const cardNumber = ("99999999"+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9)));
-        const SSID = (""+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9)));
+        const ssid = (""+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9)));
         const ExpDate = "31/12/40"
         
-        const cardQuery = "INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, SSID) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4);";
-        const cardValues= [ user.rows[0].id, cardNumber, ExpDate, SSID ]
+        const cardQuery = "INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, ssid) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4);";
+        const cardValues= [ user, cardNumber, ExpDate, ssid ]
 
         await pool.query(cardQuery, cardValues);
 
-        res.status(200).json("Cartão e Conta criados.");
+        res.status(200).json("Usuário, Cartão e Conta criados.");
 
     } catch(error) {
 
