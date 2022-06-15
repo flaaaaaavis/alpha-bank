@@ -12,14 +12,15 @@ router.get("/checkSession", async (req, res) => {
         const token = req.cookies.token;        
         if (token === undefined) res.status(401).json({ auth:false , message:"Token não encontrada" });
         
-        const user = await pool.query(`SELECT user_id 
+        let user = await pool.query(`SELECT user_id 
                                        FROM sessions 
-                                       WHERE jwt = ${token}`);
+                                       WHERE jwt = '${token}'`);        
         if (user.rows[0] === {}) res.status(401).json({ auth:false , message:"Sessão não encontrada" });
+        user = user.rows[0].user_id;
 
         const loggedUser = await pool.query(`SELECT * 
                                              FROM users 
-                                             WHERE id = ${user.rows[0]}`)
+                                             WHERE id = ${user}`)
         res.status(200).json({ auth:true , message:"Logged In", loggedUser: loggedUser.rows[0]});
 
     } catch (error) {

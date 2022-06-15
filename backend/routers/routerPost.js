@@ -15,11 +15,13 @@ router.post('/login', async (req, res) => {
         let dbUserPassword = await pool.query(`SELECT password 
                                                  FROM users 
                                                  WHERE email = '${email}' 
-                                                 AND deleted_at IS NULL`);
+                                                 AND deleted_at IS NULL`);        
+        if (dbUserPassword.rows[0] === undefined) res.status(401).json({ auth: false , message: "Wrong Email"});
         dbUserPassword = dbUserPassword.rows[0].password;
+        console.log(dbUserPassword)
         if (compare(password, dbUserPassword)) {
             try {
-                console.log("TAMO NO TRY CARALHO PORRA")
+                console.log("TAMO NO TRY CARALHO PORRA");
 
                 // Gerando Token
                 let loggedUser = await pool.query(`SELECT id 
@@ -42,7 +44,11 @@ router.post('/login', async (req, res) => {
                 res.cookie("token", userToken , {maxAge: thirtyDays, path: '/'});
                
                 // Enviando Resposta
-                res.status(200).json({ auth: true , userToken });
+                const loggedInUser = await pool.query(`SELECT * 
+                                             FROM users 
+                                             WHERE id = ${loggedUser}`)
+                res.status(200).json({ auth:true , message:"Logged In", loggedUser: loggedInUser.rows[0]});
+
 
             } catch(error) {
 
@@ -76,6 +82,7 @@ router.post("/addUser", async (req, res) => {
                                 VALUES($1, $2, $3, $4, $5, NOW()::TIMESTAMP)
                                 RETURNING id`;
         const values = [name, cpf, email, bDate, hashedPassword];
+        await pool.query(sql, values);
 
     } catch(error) {
 
@@ -115,31 +122,47 @@ router.post("/addUser", async (req, res) => {
     
 })
 
-router.post('/transactions', async (req, res) => {
+router.post('/findReceiver', async (req, res) => {
     
     const {method, value} = req.body;
+    console.log(method);
+    console.log(value);
+    let receiver;
 
     switch(method){
-
         case 'cpf':
-            await pool.query (`SELECT cpf, name 
-                               FROM user 
-                               WHERE cpf = ${cpf}, name = ${name}`);
+            console.log('cpf')
+            receiver = await pool.query (`SELECT number, users.name
+                                          FROM accounts
+                                          INNER JOIN users
+                                          ON user_id = users.id
+                                          WHERE cpf = ('${value}')`)
         break;
 
-        case 'accountCode':
-            await pool.query (`SELECT number, users.name
-                               FROM accounts
-                               INNER JOIN users
-                               ON user_id = users.id
-                               WHERE number = (${value})`)
+        case 'accountCode': 
+            console.log('conta')
+            receiver = await pool.query (`SELECT number, users.name
+                                          FROM accounts
+                                          INNER JOIN users
+                                          ON user_id = users.id
+                                          WHERE number = (${value})`)
         break;
-        
-    }
+        case 'uuid':
+            console.log('uuid')
+            receiver = await pool.query (`SELECT number, users.name
+                                          FROM accounts
+                                          INNER JOIN users
+                                          ON user_id = users.id
+                                          WHERE uuid = ('${value}')`)
+        break;
+        default:
+            console.log('defaultou')
+            res.status(401).json({message: "Qq você ta fazendo amigo?"})
+    }  
+      
+    if (receiver.rows[0] === undefined) res.status(401).json({message: "Usuário não encontrado"})
 
-    if (method == 'cpf') {
-        
-    }    
+    res.status(200).json({ message: "usuario encontrado", user: receiver.rows[0] })
 
 })
 
