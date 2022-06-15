@@ -6,7 +6,7 @@ const pool = new Pool({
     password: process.env.DATABASE_PASS,
     database: 'alpha_bank',
     host: 'localhost',
-    port: 5432
+    port: process.env.DATABASE_PORT
 })
 
 module.exports = pool
