@@ -25,7 +25,7 @@ CREATE TABLE public.accounts (
 	"id" serial NOT NULL,
 	"uuid" varchar(50) NOT NULL UNIQUE,
 	"number" serial NOT NULL UNIQUE,
-	"balance" numeric(9.2) NOT NULL,
+	"balance" numeric NOT NULL,
 	CONSTRAINT "accounts_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -58,7 +58,7 @@ CREATE TABLE public.transactions (
 	"sender_account" integer NOT NULL,
 	"receiver_account" integer NOT NULL,
 	"id" serial NOT NULL,
-	"value" numeric(9.2) NOT NULL,
+	"value" numeric NOT NULL,
 	"date" TIMESTAMP NOT NULL,
 	"description" varchar(100) NOT NULL
 ) WITH (
