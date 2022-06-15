@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         border: none;
         outline: none;
+        background-color: #CBCBCB;
 
         box-sizing: border-box;
     }
