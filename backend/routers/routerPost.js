@@ -164,6 +164,8 @@ router.post('/findReceiver', async (req, res) => {
 
     res.status(200).json({ message: "usuario encontrado", user: receiver.rows[0] })
 
+})
+
 router.post("/accountByCPFnAccount", async (req, res) => {
 
     try {
