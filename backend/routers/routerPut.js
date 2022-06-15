@@ -63,7 +63,7 @@ router.put('/transaction', async (req, res) => {
                                             WHERE number = ${sender_account}
                                             RETURNING balance`)
 
-        res.status(200).json({"message":`Transferido! Saldo atual: ${newSenderBalance.rows[0].balance} --------------- ${newReceiverBalance.rows[0].balance}`})
+        res.status(200).json({"message":`Transferido! Saldo atual: ${newSenderBalance.rows[0].balance}`})
 
     } catch (error) {
         console.log(error)
