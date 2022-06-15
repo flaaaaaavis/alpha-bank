@@ -143,10 +143,81 @@ router.post('/transactions', async (req, res) => {
 
 })
 
-                            // (`SELECT accounts.number, users.name  
-                            //     FROM (users
-                            //     INNER JOIN name ON users.name = ${name}
-                            //     INNER JOIN accountNumber on users.accountName = 
-                            //     )`);
+router.post("/accountByCPFnAccount", async (req, res) => {
+
+    try {
+        const cpf = req.body.cpf;
+        const account = req.body.account
+
+        let user = await pool.query(`SELECT * 
+                                    FROM users 
+                                    WHERE CPF = ${cpf}`);
+        user = user.rows[0];
+
+        let accountPool = await pool.query(`SELECT * 
+                                        FROM accounts 
+                                        WHERE number = ${account}`);
+        accountPool = accountPool.rows[0];
+
+
+        res.status(200).json({ message:"Done and Done", "user": user,"account": accountPool});
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+});
+
+router.post("/accountByCPF", async (req, res) => {
+
+    try {
+        const cpf = req.body.cpf;
+
+        let user = await pool.query(`SELECT * 
+                                    FROM users 
+                                    WHERE CPF = ${cpf}`);
+        user = user.rows[0];
+
+        let account = await pool.query(`SELECT * 
+                                        FROM accounts 
+                                        WHERE user_id = ${user.id}`);
+        account = account.rows[0];
+
+
+        res.status(200).json({ message:"Done and Done", "user": user,"account": account});
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+});
+
+router.post("/accountByNumber", async (req, res) => {
+
+    try {
+        const accountNumber = req.body.number;
+                
+        let account = await pool.query(`SELECT * 
+                                        FROM accounts 
+                                        WHERE number = ${accountNumber}`);
+        account = account.rows[0];
+
+        let user = await pool.query(`SELECT * 
+                                        FROM users 
+                                        WHERE id = ${account.user_id}`);
+        user = user.rows[0];
+
+        res.status(200).json({ message:"Done and Done", "user": user,"account": account});
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+});
 
 module.exports = router;
