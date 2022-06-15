@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { StyledMain, ContainerTop, StyledBalance, StyledAccountBalanceTitle, StyledAccountBalance, StyledBalanceRight, StyledEyeButton, StyledStatementsFilter, StyledFilterOption, StyledStatementsTable, StyledTableHead, StyledTableBody } from './index'
+import { StyledMain, ContainerTop, StyledBalance, StyledAccountBalanceTitle, StyledAccountBalance, StyledBalanceRight, StyledEyeButton, {/* StyledStatementsFilter, StyledFilterOption*/}, StyledStatementsTable, StyledTableHead, StyledTableBody } from './index'
 
 import eyeButton from '../../images/eyeButton.png'
 import closedEyeButton from '../../images/closedEyeButton.png'
@@ -25,11 +25,11 @@ function Statements() {
                         <StyledEyeButton onClick={changeImage} id="eye-button" src={open} />
                     </StyledBalanceRight>
                 </StyledBalance>
-                <StyledStatementsFilter>
+                {/* <StyledStatementsFilter>
                     <StyledFilterOption default>Filtrar por:</StyledFilterOption>
                     <StyledFilterOption></StyledFilterOption>
                     <StyledFilterOption></StyledFilterOption>
-                </StyledStatementsFilter>
+                </StyledStatementsFilter> */}
             </ContainerTop>
 
             <StyledStatementsTable>

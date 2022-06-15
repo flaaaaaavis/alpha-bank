@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
         const dbUserPassword = await pool.query(`SELECT password 
                                                  FROM users 
                                                  WHERE email = ${email} 
-                                                 AND deleted_by=null;`)   
+                                                 AND deleted_at=null;`)   
 
         if (compare(password, dbUserPassword.rows[0].password)) {
 
