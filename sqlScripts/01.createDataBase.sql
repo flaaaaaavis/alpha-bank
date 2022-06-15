@@ -6,7 +6,7 @@ CREATE TABLE public.users (
 	"CPF" varchar(11) NOT NULL,
 	"name" varchar(100) NOT NULL,
 	"bdate" DATE NOT NULL,
-	"password" varchar(50) NOT NULL,
+	"password" varchar(100) NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -23,7 +23,7 @@ CREATE TABLE public.accounts (
 	"deleted_at" TIMESTAMP,
 	"user_id" integer NOT NULL,
 	"id" serial NOT NULL,
-	"uuid" varchar(50) NOT NULL UNIQUE,
+	"uuid" varchar(100) NOT NULL UNIQUE,
 	"number" serial NOT NULL UNIQUE,
 	"balance" numeric NOT NULL,
 	CONSTRAINT "accounts_pk" PRIMARY KEY ("id")
