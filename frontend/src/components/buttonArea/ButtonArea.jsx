@@ -1,11 +1,10 @@
-import Button from "../../components/buttonCustomerArea/Button.jsx";
+import Button from "../ButtonCustomerArea/Button.jsx";
 import { StyledDiv }from "./styles.js";
 import imageaccount from "../../images/accountLogo.png" 
 import imagecard from "../../images/cardLogo.png" 
 import imagedeposit from "../../images/depositLogo.png" 
 import imageextract from "../../images/extractLogo.png" 
 import imagetransaction from "../../images/transactionLogo.png" 
- 
 
 function ButtonArea() {
   return (
@@ -13,7 +12,7 @@ function ButtonArea() {
         <Button 
         image={imageaccount}
         title="Conta"
-        onClick="clicou"
+        Link to="/"
         />
         <Button 
         image={imagecard}

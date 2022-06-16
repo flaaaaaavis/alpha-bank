@@ -2,7 +2,8 @@ import { GlobalStyle } from './style/style.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DepositArea from './pages/DepositArea.jsx';
 import LoginPage from './pages/LoginPage.jsx';
-import CustomerArea from './pages/customerArea/CustomerArea.jsx';
+import CustomerPage from './pages/CustomerPage.jsx';
+import AccountPage from './pages/AccountPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import RecoverPage from './pages/RecoverPage.jsx';
 import Statements from './pages/Statements.jsx'
@@ -23,10 +24,9 @@ function App() {
       <LoginPage />
       <Router>
       <Routes>
-       
+      
       </Routes>
     </Router>
-
     </TransactionsProvider></CardProvider></UserProvider></AccountProvider>
     </>    
   );
