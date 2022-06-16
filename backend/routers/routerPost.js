@@ -118,44 +118,33 @@ router.post("/addUser", async (req, res) => {
 })
 
 router.post('/findReceiver', async (req, res) => {
-    
     const {method, value} = req.body;
-    console.log(method);
-    console.log(value);
+
     let receiver;
 
     switch(method){
         case 'cpf':
             console.log('cpf')
             receiver = await pool.query (`SELECT number, users.name
-                                          FROM accounts
-                                          INNER JOIN users
-                                          ON user_id = users.id
-                                          WHERE cpf = ('${value}')`)
-        break;
-
+                                        FROM accounts
+                                        INNER JOIN users
+                                        ON user_id = users.id
+                                        WHERE cpf = ('${value}')`)
+            res.status(200).json(receiver.rows[0])
+            break;
         case 'accountCode': 
             console.log('conta')
             receiver = await pool.query (`SELECT number, users.name
-                                          FROM accounts
-                                          INNER JOIN users
-                                          ON user_id = users.id
-                                          WHERE number = (${value})`)
-        break;
-        case 'uuid':
-            console.log('uuid')
-            receiver = await pool.query (`SELECT number, users.name
-                                          FROM accounts
-                                          INNER JOIN users
-                                          ON user_id = users.id
-                                          WHERE uuid = ('${value}')`)
-        break;
+                                        FROM accounts
+                                        INNER JOIN users
+                                        ON user_id = users.id
+                                        WHERE number = (${value})`)
+            res.status(200).send(receiver.rows[0])
+            break;
         default:
             console.log('defaultou')
             res.status(401).json({message: "Qq você ta fazendo amigo?"})
     }
-    
-    res.status(200).json({ message: "usuario encontrado", user: receiver.rows[0] })
 
 })
 

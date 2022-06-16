@@ -1,5 +1,5 @@
 import { StyledDiv, StyledTable, StyledTitle }from "./styles.js";
-import Saldo from "../../components/saldo/Saldo.jsx";
+import Saldo from "../saldo/Saldo.jsx";
  
 function InfoAccountArea() {
   return (
@@ -18,7 +18,7 @@ function InfoAccountArea() {
             <td>R$ -75,00</td>
           </tr>
           <tr>
-            <td>Depósito online</td>
+            <td>Depósito online   </td>
             <td>R$ +100,00</td>
           </tr>
         </tbody>

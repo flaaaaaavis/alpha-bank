@@ -5,7 +5,6 @@ export const StyledSaldo = Styled.h1`
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
-    line-height: 63px;
     text-align: left;
     color: #007366;
     margin-left: 15px;
@@ -16,7 +15,6 @@ export const StyledValue = Styled.h1`
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
-    line-height: 63px;
     text-align: center;
     color: #007366;
 `;    

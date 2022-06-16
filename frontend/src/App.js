@@ -2,7 +2,9 @@ import { GlobalStyle } from './style/style.js';
 import { BrowserRouter as Router, Routes, Route, Link, } from 'react-router-dom'
 import DepositArea from './pages/DepositArea.jsx';
 import LoginPage from './pages/LoginPage.jsx';
-import CustomerArea from './pages/customerArea/CustomerArea.jsx';
+import CustomerPage from './pages/CustomerPage.jsx';
+import CustomerArea from './components/CustomerArea/CustomerArea.jsx';
+import AccountPage from './pages/AccountPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import { RegisterBoxPassword } from './components/RegisterBox/RegisterBox.jsx'
 import RecoverPage from './pages/RecoverPage.jsx';
@@ -39,7 +41,6 @@ function App() {
        </Route>
       </Routes>
     </Router>
-
     </>    
   );
 }
