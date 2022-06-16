@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterBox from '../components/RegisterBox/RegisterBox.jsx' 
+import { RegisterBox, RegisterBoxPassword} from '../components/RegisterBox/RegisterBox.jsx' 
 
 function RegisterPage() {
 
