@@ -65,27 +65,25 @@ router.post('/login', async (req, res) => {
 
 router.post("/addUser", async (req, res) => {
 
-    const { name, cpf, email, bDate, password } = req.body;
+    const { name, CPF, email, bDate, password } = req.body;
     const hashedPassword = hashPwd(password);
 
     //Creating the User
     try {
+        console.log([name, CPF, email, bDate, hashedPassword]);
 
-        console.log([name, cpf, email, bDate, hashedPassword]);
+        await pool.query(`BEGIN TRANSACTION`);
 
-        const sql = `INSERT INTO users(name, cpf, email, bdate, password, created_at)
-                                VALUES($1, $2, $3, $4, $5, NOW()::TIMESTAMP)
-                                RETURNING id`;
-        const values = [name, cpf, email, bDate, hashedPassword];
+        const sql = `INSERT INTO users (cpf, name, bdate, email, password, created_at) VALUES ($1, $2, $3, $4, $5, NOW()::TIMESTAMP) RETURNING id`;
+        const values = [ CPF, name, bDate, email, hashedPassword];
         await pool.query(sql, values);
 
     } catch(error) {
-
         console.log(error)
-
+        res.status(400).send(error)
     }
 
-    //Creating Account and Card
+    // Creating Account and Card
     try {
         
         let user = await pool.query(`SELECT id 
@@ -94,7 +92,7 @@ router.post("/addUser", async (req, res) => {
                                     AND deleted_at IS NULL`)
         user = user.rows[0].id;
 
-        const accountQuery = "INSERT INTO accounts (created_by, created_at, user_id, uuid, balance) values ($1 , NOW()::TIMESTAMP, $1, $2, $3);";
+        const accountQuery = `INSERT INTO accounts (created_by, created_at, user_id, uuid, balance) values ($1 , NOW()::TIMESTAMP, $1, $2, $3);`;
         const accountValues= [user, uuidv4(), 0.00]
         await pool.query(accountQuery, accountValues);
 
@@ -102,10 +100,12 @@ router.post("/addUser", async (req, res) => {
         const ssid = (""+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9))+parseInt(geraRandom(0, 9)));
         const ExpDate = "31/12/40"
         
-        const cardQuery = "INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, ssid) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4);";
+        const cardQuery = `INSERT INTO cards (created_by, created_at, user_id, number, expirity_date, ssid) values ($1, NOW()::TIMESTAMP, $1, $2, $3, $4);`;
         const cardValues= [ user, cardNumber, ExpDate, ssid ]
 
         await pool.query(cardQuery, cardValues);
+
+        await pool.query(`COMMIT TRANSACTION`);
 
         res.status(200).json("Usuário, Cartão e Conta criados.");
 

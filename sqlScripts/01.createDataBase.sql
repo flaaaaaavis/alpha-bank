@@ -3,7 +3,7 @@ CREATE TABLE public.users (
 	"updated_at" TIMESTAMP,
 	"deleted_at" TIMESTAMP,
 	"id" serial NOT NULL,
-	"CPF" varchar(11) NOT NULL,
+	"cpf" varchar(11) NOT NULL,
 	"name" varchar(100) NOT NULL,
 	"bdate" DATE NOT NULL,
 	"password" varchar(100) NOT NULL,
@@ -11,8 +11,6 @@ CREATE TABLE public.users (
 ) WITH (
   OIDS=FALSE
 );
-
-
 
 CREATE TABLE public.accounts (
 	"created_by" integer NOT NULL,
@@ -31,8 +29,6 @@ CREATE TABLE public.accounts (
   OIDS=FALSE
 );
 
-
-
 CREATE TABLE public.cards (
 	"created_by" integer NOT NULL,
 	"created_at" TIMESTAMP NOT NULL,
@@ -42,15 +38,13 @@ CREATE TABLE public.cards (
 	"deleted_at" TIMESTAMP,
 	"user_id" integer NOT NULL,
 	"id" serial NOT NULL,
-	"number" integer NOT NULL UNIQUE,
+	"number" numeric NOT NULL UNIQUE,
 	"expirity_date" DATE NOT NULL,
-	"SSID" numeric(3) NOT NULL,
+	"ssid" numeric(3) NOT NULL,
 	CONSTRAINT "cards_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
-
-
 
 CREATE TABLE public.transactions (
 	"created_by" integer NOT NULL,
@@ -65,8 +59,6 @@ CREATE TABLE public.transactions (
   OIDS=FALSE
 );
 
-
-
 CREATE TABLE public.sessions (
 	"jwt" varchar(200) NOT NULL,
 	"user_id" integer NOT NULL,
@@ -74,8 +66,6 @@ CREATE TABLE public.sessions (
 ) WITH (
   OIDS=FALSE
 );
-
-
 
 
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("id");

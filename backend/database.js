@@ -3,10 +3,10 @@ require('dotenv').config()
 
 const pool = new Pool({
     user: 'postgres',
-    password: process.env.DATABASE_PASS,
-    database: 'alpha_bank',
+    password: '0508',
+    database: 'AlphaBank',
     host: 'localhost',
-    port: process.env.DATABASE_PORT
+    port: '5432'
 })
 
 module.exports = pool
