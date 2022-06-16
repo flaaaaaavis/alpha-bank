@@ -5,35 +5,43 @@ import imagecard from "../../images/cardLogo.png"
 import imagedeposit from "../../images/depositLogo.png" 
 import imageextract from "../../images/extractLogo.png" 
 import imagetransaction from "../../images/transactionLogo.png" 
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 function ButtonArea() {
   return (
     <StyledDiv>
-        <Button 
-        image={imageaccount}
-        title="Conta"
-        Link to="/"
-        />
-        <Button 
-        image={imagecard}
-        title="Cartão"
-        onClick="clicou"
-        />
-        <Button 
-        image={imagedeposit}
-        title="Depósito"
-        onClick="clicou"
-        />
-        <Button 
-        image={imageextract}
-        title="Extrato"
-        onClick="clicou"
-        />
-        <Button 
-        image={imagetransaction}
-        title="Transações"
-        onClick="clicou"
-        />
+      <Router>
+        <Link to="/conta">
+          <Button 
+          image={imageaccount}
+          title="Conta"
+          />
+        </Link>
+        <Link to="/deposito">
+          <Button 
+          image={imagedeposit}
+          title="Depósito"
+          />
+        </Link>
+        <Link to="/cartoes">
+          <Button 
+          image={imagecard}
+          title="Cartões"
+          />
+        </Link>
+        <Link to="/extrato">
+          <Button 
+          image={imageextract}
+          title="Extrato"
+          />
+        </Link>
+        <Link to="/transacoes">
+          <Button 
+          image={imagetransaction}
+          title="Transações"
+          />
+        </Link>
+      </Router>
     </StyledDiv>
   );
 }

@@ -2,6 +2,7 @@ import React,  { useContext } from 'react';
 import { StyledDiv, Container, StyledTitleContainer, StyledTitle, StyledButton, StyledData, StyledEmail, StyledPassword, StyledButtonDelete } from './styles.js'
 import lapis from '../../images/lapis.png'
 import { UserContext } from '../../contexts/UserContext';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 function AccessData(props) {
     const { email } = useContext(UserContext)
@@ -17,7 +18,11 @@ function AccessData(props) {
                     <StyledPassword> ********** {props.password}</StyledPassword>
                 </StyledData>
             </StyledDiv>
-            <StyledButtonDelete onClick={props.onClick}> Deletar Conta </StyledButtonDelete>
+            <Router>
+                <Link to="/deleteUser">
+                    <StyledButtonDelete> Deletar Conta </StyledButtonDelete>
+                </Link>
+            </Router>
         </Container>
     );
 }
