@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         outline: none;
         font-family: 'Oxygen', sans-serif;
         vertical-align: center;
+        background-color: #D2DCDB;
 
         box-sizing: border-box;
     }

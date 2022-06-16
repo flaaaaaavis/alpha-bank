@@ -1,7 +1,8 @@
 import { GlobalStyle } from './style/style.js';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DepositArea from './pages/DepositArea.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import CustomerArea from './pages/customerArea/CustomerArea.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import RecoverPage from './pages/RecoverPage.jsx';
 import Statements from './pages/Statements.jsx'
@@ -16,13 +17,15 @@ import { TransactionsProvider } from "./contexts/TransactionContext";
 function App() {
   return (
     <>
-        <AccountProvider>
-            <UserProvider>
-                <CardProvider>
-                    <TransactionsProvider>
-              
-                        <GlobalStyle />
-                        <Transactions />
+    <AccountProvider><UserProvider><CardProvider><TransactionsProvider>
+    
+      <GlobalStyle />
+      <LoginPage />
+      <Router>
+      <Routes>
+       
+      </Routes>
+    </Router>
 
                     </TransactionsProvider>
                 </CardProvider>
