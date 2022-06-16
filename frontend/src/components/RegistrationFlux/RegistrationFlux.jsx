@@ -50,4 +50,18 @@ function PasswordChanged() {
 
 }
 
-export { RegisterPassword, SendEmailCode, SetPassword, PasswordChanged }
+function RegisterForm() {
+
+    return <SForm>
+        <RegisterFormDiv>
+            <SRegisterFormTitle>Faça Sua Conta</SRegisterFormTitle>
+            <SInput type='text' placeholder='Nome Completo'></SInput>
+            <SInput type='text' placeholder='CPF'></SInput>
+            <SInput type='text' placeholder='E-mail'></SInput>
+            <SInput type='text' placeholder='Data de Nascimento'></SInput>
+            <SRegisterBtn>Continuar</SRegisterBtn>
+        </RegisterFormDiv>
+    </SForm>
+}
+
+export  { RegisterForm, RegisterPassword, SendEmailCode, SetPassword, PasswordChanged };
