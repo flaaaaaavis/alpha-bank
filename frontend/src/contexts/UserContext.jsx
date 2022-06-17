@@ -4,6 +4,7 @@ export const UserContext=createContext({});
 
 export const UserProvider = (props) => {
 
+    const [id, setId] = useState("")
     const [name, setName] = useState("");
     const [cpf , setCpf] = useState("");
     const [bDate, setBDate] = useState("");
@@ -14,6 +15,7 @@ export const UserProvider = (props) => {
                                .then(data => data.json())
                                .then(resposta => resposta)
                                .catch(error=> console.log(error));
+        setId(response.user.id)
         setName(response.user.name);
         setCpf(response.user.cpf);
         setBDate(response.user.bDate);
@@ -23,6 +25,7 @@ export const UserProvider = (props) => {
     return (
         <UserContext.Provider
             value={{
+                id,
                 name,
                 cpf,
                 bDate,

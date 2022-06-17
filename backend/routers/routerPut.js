@@ -26,8 +26,12 @@ router.put('/updateUser', async (req, res) => {
 });
 
 router.put('/deposit', async (req, res) => {
-    console.log(req.body);
-    const { amount, account_number } = req.body;
+    const token = req.cookies.token;
+    const user = jwtController.verify(token, process.env.SECRET);
+
+    const { amount, account_number, id, date } = req.body;
+
+    pool.query('BEGIN TRANSACTION');
  
     const balance = await pool.query(`SELECT balance FROM accounts WHERE number = (${account_number})`)
     let newBalance = parseFloat(amount) + parseFloat(balance.rows[0].balance);
@@ -36,6 +40,11 @@ router.put('/deposit', async (req, res) => {
                                    SET balance = ${newBalance}
                                    WHERE number = ${account_number}
                                    RETURNING balance`);
+    
+    await pool.query(`INSERT INTO transactions(created_by, created_at, sender_account, receiver_account, value, date, description ) VALUES (${id}, NOW()::TIMESTAMP,  )`)
+
+    pool.query('COMMIT TRANSACTION')    
+
     res.status(200).json({message:`Deposito realizado, valor atual: ${newBalance.rows[0].balance}`})
  
 });
