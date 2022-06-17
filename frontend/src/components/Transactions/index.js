@@ -33,6 +33,17 @@ export const Form = Styled.div`
         text-align: center;
         color: #007366;
     }
+    div {
+        width: 100%;
+    }
+    h4 {
+        font-family: Oxygen;
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: 0em;
+        text-align: center;
+        color: #007366;
+    }
     input {
         width: 80%;
         max-width: 340px;
@@ -45,6 +56,11 @@ export const Form = Styled.div`
         ::placeholder {
             color: #007366;
         }
+    }
+    .label {
+        margin-left: 15%;
+        text-decoration: bold;
+        align-self: flex-start;
     }
     a {
         width: 80%;
@@ -59,6 +75,9 @@ export const Form = Styled.div`
             text-align: center;
             color: #FFFFFF;
         }
+    }
+    img {
+        height: 50%;
     }
     
 `
@@ -124,29 +143,3 @@ export const TableBody = Styled.tbody`
         text-align: center;
     }
 `
-
-// async function allTransactions(userId) {
-//     // send request to backend via fetch and manage response
-//     const data = await fetch('http://localhost:5000/AllTransactions', {
-//         method: 'get',
-//         headers: {
-//             'Content-Type': 'application/json'
-//             // 'Content-Type': 'application/x-www-form-urlencoded',
-//         }
-//     })
-//     data.map(transaction => {
-        
-//     })
-// }
-
-// function DayTransactions(day) {
-    
-// }
-
-// function MonthTransactions(month) {
-
-// }
-
-// function YearTransactions(year) {
-
-// }

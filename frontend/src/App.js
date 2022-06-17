@@ -20,9 +20,11 @@ function App() {
 
   return (
     <>
-    <UserProvider><AccountProvider><CardProvider><TransactionsProvider>
-    <GlobalStyle />
-    <Router>
+    {/* <AccountProvider><UserProvider><CardProvider><TransactionsProvider> */}
+    
+      <GlobalStyle />
+      {/* <LoginPage />
+      <Router>
       <Routes>
       <Route path ='/'
              element={<LoginPage />}
@@ -58,8 +60,12 @@ function App() {
              element={<AccountPage />}
       ></Route>
       </Routes>
-    </Router>
-    </TransactionsProvider></CardProvider></AccountProvider></UserProvider>
+    </Router> */}
+      <Transactions />
+                    {/* </TransactionsProvider>
+                </CardProvider>
+            </UserProvider>
+        </AccountProvider> */}
     </>    
   );
 }

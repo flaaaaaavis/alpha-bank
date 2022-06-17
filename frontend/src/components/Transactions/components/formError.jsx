@@ -1,18 +1,20 @@
+import React from 'react';
+import { useState } from 'react';
 import {Link} from 'react-router-dom'
 import Image from '../../../images/dataNotFound.png'
 
-function FormError() {
-    async function getData({ showData, setShowData }) {
-        setShowData({
+function FormError({ showData, handleData }) {
+    async function getData() {
+        handleData({
             "name": "",
-            "account": ""
+            "account": "",
+            "path": "/"
         })
-        return ('/')
     }
     return <>
         <img src={Image} alt="" />
-        <h3>Tente novamente</h3>
-        <Link to={getData()}><button>Retornar</button></Link>
+        <h3>Ops!!<br />Tente novamente</h3>
+        <Link onClick={getData} to={showData.path}><button>Retornar</button></Link>
     </>
 }
 

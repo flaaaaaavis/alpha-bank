@@ -1,106 +1,162 @@
 import React from 'react';
 import { useState } from 'react';
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Form1({showData, handleData}) {    
     const [cpf, setCPF] = useState('');
     const [account, setAccount] = useState('');
 
+    let navigate = useNavigate();
+
     async function getData() {
-        console.log(showData);
-        handleData({
-            "path": "/form2"
-        });
-        console.log(showData);
+        if (cpf && account) {
+            try {
+                await fetch('http://localhost:5000/findReceiver', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: {
+                        method: 'cpf',
+                        value: cpf
+                    }
+                }).then((response) => response.json()
+                ).then((data) => {
+                    console.log(data)
+                    // console.log(showData)
+                    handleData({
+                        "name": data.name,
+                        "account": data.number,
+                        "path": "/form2"
+                    })
+                    navigate('/form2')
+                    // console.log(showData))
+                })
+            } catch(error) {
+                console.log(error)
+                handleData({
+                    "name": "",
+                    "account": "",
+                    "path": "/formError"
+                })
+                navigate('/formError')
+            }
 
-        // if (cpf && account) {
-        //     await fetch('http://localhost:5000/findReceiver', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: {
-        //             method: 'cpf',
-        //             value: cpf
-        //         }
-        //     }).then(response => {
-        //         console.log(response.rows[0])
-        //         return response.rows[0]
-        //     }).then(  
-        //         data => {
-        //         setShowData({
-        //             "name": data.user.users.name,
-        //             "account": data.user.number,
-        //             "path": "/form2"
-        //         })
-        //     }).catch(
-        //         (e) => {
-        //             console.log(e)
-        //         }
-        //     )
-
-        // } else if (cpf && !account) {
-        //     console.log('digitou cpf')
-        //     try {
-        //         await fetch('http://localhost:5000/findReceiver', {
-        //             method: 'POST',
-        //             mode: 'no-cors',
-        //             headers: {
-        //                 'Content-Type': 'application/json; charset=utf-8',
-        //                 // 'Access-Control-Allow-Origin': 'http://localhost:3000/'
-        //             },
-        //             body: {
-        //                 value: cpf,
-        //                 method: 'cpf'
-        //             }
-        //         }).then(
-        //             data => {
-        //                 console.log(showData)
-        //                 setShowData({
-        //                     "name": data.user.name,
-        //                     "account": data.user.number,
-        //                     "path": "/form2"
-        //                 })
-        //                 console.log(showData)
-        //         })
-        //     } catch (error) {
-        //         console.log(error)
-        //         setShowData({
-        //             "name": "",
-        //             "account": "",
-        //             "path": "/formError"
-        //         })
-        //     }
+        } else if (cpf && !account) {
+            console.log('digitou cpf')
+            try {
+                await fetch('http://localhost:5000/findReceiver', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        value: cpf,
+                        method: 'cpf'
+                    })
+                }).then((response) => response.json()
+                ).then((data) => {
+                    // console.log(data)
+                    // console.log(showData)
+                    handleData({
+                        "name": data.name,
+                        "account": data.number,
+                        "path": "/form2"
+                    })
+                    navigate('/form2')
+                    // console.log(showData))
+                })
+            } catch(error) {
+                console.log(error)
+                handleData({
+                    "name": "",
+                    "account": "",
+                    "path": "/formError"
+                })
+                navigate('/formError')
+            }
             
-        // } else if (account && !cpf) {
-        //     console.log('digitou conta')
-        //     await fetch('http://localhost:5000/findReceiver', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/x-www-form-urlencoded'
-        //         },
-        //         body: {
-        //             method: 'accountCode',
-        //             value: account
-        //         }
-        //     }).then(response => {
-        //         response.json()
-        //     }).then(data => {
-        //         setShowData({
-        //             "name": data.user.name,
-        //             "account": data.account.number,
-        //             "path": "/form2"
-        //         })
-        //     })
-        // } else {
-        //     console.log('digitou nada')
-        //     setShowData({
-        //         "name": '',
-        //         "account": '',
-        //         "path": "/formError"
-        //     })
-        //     console.log(showData)
-        // }
+        } else if (account && !cpf) {
+            console.log('digitou conta')
+            try {
+                await fetch('http://localhost:5000/findReceiver', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: {
+                        method: 'accountCode',
+                        value: cpf
+                    }
+                }).then((response) => response.json()
+                ).then((data) => {
+                    console.log(data)
+                    // console.log(showData)
+                    handleData({
+                        "name": data.name,
+                        "account": data.number,
+                        "path": "/form2"
+                    })
+                    navigate('/form2')
+                    // console.log(showData))
+                })
+            } catch(error) {
+                console.log(error)
+                handleData({
+                    "name": "",
+                    "account": "",
+                    "path": "/formError"
+                })
+                navigate('/formError')
+            }
+
+        } else if (cpf && !account) {
+            console.log('digitou cpf')
+            try {
+                await fetch('http://localhost:5000/findReceiver', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        value: cpf,
+                        method: 'cpf'
+                    })
+                }).then((response) => response.json()
+                ).then((data) => {
+                    console.log(data)
+                    // console.log(showData)
+                    handleData({
+                        "name": data.name,
+                        "account": data.number,
+                        "path": "/form2"
+                    })
+                    navigate('/form2')
+                    // console.log(showData))
+                })
+            } catch(error) {
+                console.log(error)
+                handleData({
+                    "name": "",
+                    "account": "",
+                    "path": "/formError"
+                })
+                navigate('/formError')
+            }
+        } else {
+            console.log('digitou nada')
+            handleData({
+                "name": '',
+                "account": '',
+                "path": "/formError"
+            })
+            navigate('/formError')
+            console.log(showData)
+        }
     }
 
     return <>

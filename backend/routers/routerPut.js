@@ -53,8 +53,13 @@ router.put('/transaction', async (req, res) => {
 
     try {
 
-        const senderBalance = await pool.query(`SELECT balance FROM accounts WHERE number = (${sender_account})`);
-        if (parseFloat(senderBalance.rows[0].balance) < parseFloat(amount)) res.status(401).json({message: "Ladrão, ladrão, seu ladrãozinho"});
+        const senderBalance = await pool.query(`SELECT balance 
+                                                FROM accounts 
+                                                WHERE number = (${sender_account})`);
+
+        if (parseFloat(senderBalance.rows[0].balance) < parseFloat(amount)) {
+            res.status(401).json({message: "Ladrão, ladrão, seu ladrãozinho"})
+        }
 
         const receiverBalance = await pool.query(`SELECT balance FROM accounts WHERE number = (${receiver_account})`)
         let newReceiverBalance = parseFloat(amount) + parseFloat(receiverBalance.rows[0].balance);
@@ -74,6 +79,7 @@ router.put('/transaction', async (req, res) => {
 
     } catch (error) {
         console.log(error)
+        res.sendStatus(401);
     }
 
 })

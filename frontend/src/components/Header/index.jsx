@@ -16,7 +16,7 @@ function Header() {
           <StyledLogo src={logo} alt="Logo AlphaBank" />
           <StyledUserInfo>
             <h1>{name}</h1>
-            <p>Agencia: <span>0923-5</span> | Conta: <span>{number}</span></p>
+            <p>Agencia: <span>0001</span> | Conta: <span>{number}</span></p>
           </StyledUserInfo>
       </StyledContainerLeft>
 
