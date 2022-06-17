@@ -17,7 +17,9 @@ export const TransactionsProvider = (props) => {
             const dado = {
                 "description": element.description,
                 "date": element.date,
-                "value": element.value
+                "value": element.value,
+                "sender_account": element.sender_account,
+                "receiver_account": element.receiver_account
             }
             array.push(dado)
         });
