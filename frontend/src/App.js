@@ -27,6 +27,9 @@ function App() {
       <Route path ='/'
              element={<LoginPage />}
       />
+      <Route path ='/recover'
+             element={<RecoverPage />}
+      />
       <Route path='/statements'
              element={<Statements />}
       ></Route>
@@ -38,6 +41,9 @@ function App() {
       ></Route>
       <Route path='/deposit'
              element={<DepositArea />}
+      ></Route>
+      <Route path='/deposit/amount'
+             element={<DepositAmount />}
       ></Route>
       <Route path='/registrationpassword'
              element={<RegisterBoxPassword />}
