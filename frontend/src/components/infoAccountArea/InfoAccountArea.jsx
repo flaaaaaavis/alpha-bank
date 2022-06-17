@@ -1,5 +1,5 @@
 import { StyledDiv, StyledTable, StyledTitle, StyledTd }from "./styles.js";
-import Saldo from "../Saldo/Saldo.jsx";
+import Saldo from "../saldo/Saldo";
  
 function InfoAccountArea() {
   return (
