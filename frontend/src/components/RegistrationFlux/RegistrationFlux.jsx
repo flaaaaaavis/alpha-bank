@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 function RegisterPassword() {
-
-    let navigate = useNavigate()
+    
     const {password, setPassword, registerUser} = useContext(RegisterContext);
 
 

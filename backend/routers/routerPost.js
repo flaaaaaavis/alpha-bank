@@ -105,7 +105,7 @@ router.post("/addUser", async (req, res) => {
 
         await pool.query(`COMMIT TRANSACTION`);
 
-        res.status(200).json("Usuário, Cartão e Conta criados.");
+        res.status(200).json({status: true, message:"Usuário, Cartão e Conta criados."});
 
     } catch(error) {
 
