@@ -11,7 +11,6 @@ import { useEffect } from 'react';
 
 function Transactions() {
     const [showData, setShowData] = useState({
-        "path": "/",
         "name": "",
         "account": "",
         "value": ""

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
-function Form1({showData, handleData}) {    
+function Form1({showData, handleData}) {
     const [cpf, setCPF] = useState('');
     const [account, setAccount] = useState('');
 
@@ -28,7 +28,6 @@ function Form1({showData, handleData}) {
                     handleData({
                         "name": data.name,
                         "account": data.number,
-                        "path": "/form2"
                     })
                     navigate('/form2')
                     // console.log(showData))
@@ -37,8 +36,7 @@ function Form1({showData, handleData}) {
                 console.log(error)
                 handleData({
                     "name": "",
-                    "account": "",
-                    "path": "/formError"
+                    "account": ""
                 })
                 navigate('/formError')
             }
@@ -62,8 +60,7 @@ function Form1({showData, handleData}) {
                     // console.log(showData)
                     handleData({
                         "name": data.name,
-                        "account": data.number,
-                        "path": "/form2"
+                        "account": data.number
                     })
                     navigate('/form2')
                     // console.log(showData))
@@ -72,8 +69,7 @@ function Form1({showData, handleData}) {
                 console.log(error)
                 handleData({
                     "name": "",
-                    "account": "",
-                    "path": "/formError"
+                    "account": ""
                 })
                 navigate('/formError')
             }
@@ -97,8 +93,7 @@ function Form1({showData, handleData}) {
                     // console.log(showData)
                     handleData({
                         "name": data.name,
-                        "account": data.number,
-                        "path": "/form2"
+                        "account": data.number
                     })
                     navigate('/form2')
                     // console.log(showData))
@@ -107,8 +102,7 @@ function Form1({showData, handleData}) {
                 console.log(error)
                 handleData({
                     "name": "",
-                    "account": "",
-                    "path": "/formError"
+                    "account": ""
                 })
                 navigate('/formError')
             }
@@ -132,8 +126,7 @@ function Form1({showData, handleData}) {
                     // console.log(showData)
                     handleData({
                         "name": data.name,
-                        "account": data.number,
-                        "path": "/form2"
+                        "account": data.number
                     })
                     navigate('/form2')
                     // console.log(showData))
@@ -142,8 +135,7 @@ function Form1({showData, handleData}) {
                 console.log(error)
                 handleData({
                     "name": "",
-                    "account": "",
-                    "path": "/formError"
+                    "account": ""
                 })
                 navigate('/formError')
             }
@@ -151,8 +143,7 @@ function Form1({showData, handleData}) {
             console.log('digitou nada')
             handleData({
                 "name": '',
-                "account": '',
-                "path": "/formError"
+                "account": ''
             })
             navigate('/formError')
             console.log(showData)
@@ -164,7 +155,7 @@ function Form1({showData, handleData}) {
         <input value={cpf} onInput={(e) => setCPF(e.target.value)} type="text" length="11" placeholder='CPF' />
         <p>ou</p>
         <input value={account} onInput={(e) => setAccount(e.target.value)} type="text" placeholder='Código da Conta' />
-        <Link onClick={getData} to={showData.path}><button>Continuar</button></Link>
+        <Link onClick={getData} to='#'><button>Continuar</button></Link>
     </>
 }
 export default Form1
