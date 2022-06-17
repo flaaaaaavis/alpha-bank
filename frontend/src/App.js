@@ -20,10 +20,10 @@ function App() {
 
   return (
     <>
-    {/* <AccountProvider><UserProvider><CardProvider><TransactionsProvider> */}
+    <AccountProvider><UserProvider><CardProvider><TransactionsProvider>
     
       <GlobalStyle />
-      {/* <LoginPage />
+      <LoginPage />
       <Router>
       <Routes>
       <Route path ='/'
@@ -60,12 +60,11 @@ function App() {
              element={<AccountPage />}
       ></Route>
       </Routes>
-    </Router> */}
-      <Transactions />
-                    {/* </TransactionsProvider>
+    </Router>
+                    </TransactionsProvider>
                 </CardProvider>
             </UserProvider>
-        </AccountProvider> */}
+        </AccountProvider>
     </>    
   );
 }
