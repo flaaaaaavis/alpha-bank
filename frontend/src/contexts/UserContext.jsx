@@ -4,22 +4,30 @@ export const UserContext=createContext({});
 
 export const UserProvider = (props) => {
 
-    const [name, setName] = useState("Fulano Carvalho");
-    const [cpf , setCpf] = useState("123.456.789-10");
-    const [bDate, setBDate] = useState("26/05/1523");
-    const [email, setEmail] = useState("daSilvaFulano@email.com");
+    const [name, setName] = useState("");
+    const [cpf , setCpf] = useState("");
+    const [bDate, setBDate] = useState("");
+    const [email, setEmail] = useState("");
+
+    async function collectUser() {
+        const response = await fetch("http://localhost:4000/user", {method: 'get', credentials: 'include'})
+                               .then(data => data.json())
+                               .then(resposta => resposta)
+                               .catch(error=> console.log(error));
+        setName(response.user.name);
+        setCpf(response.user.cpf);
+        setBDate(response.user.bDate);
+        setEmail(response.user.email);
+    }
 
     return (
         <UserContext.Provider
             value={{
                 name,
-                setName,
                 cpf,
-                setCpf,
                 bDate,
-                setBDate,
                 email,
-                setEmail
+                collectUser
             }}
         >
             {props.children}

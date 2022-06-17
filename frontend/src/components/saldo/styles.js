@@ -4,8 +4,7 @@ export const StyledSaldo = Styled.h1`
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
-    line-height: 63px;
+    font-size: 35px;
     text-align: left;
     color: #007366;
     margin-left: 15px;
@@ -15,8 +14,7 @@ export const StyledValue = Styled.h1`
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
-    line-height: 63px;
+    font-size: 35px;
     text-align: center;
     color: #007366;
 `;    
@@ -27,6 +25,7 @@ export const StyledDiv = Styled.div`
     background: #FFFFFF;
     border-radius: 20px;
     margin: 30px;
+    padding: 40px;
 `;    
 
 export const StyledEye = Styled.button`

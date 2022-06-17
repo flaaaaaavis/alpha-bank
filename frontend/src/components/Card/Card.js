@@ -23,6 +23,7 @@ export const StyledCard = Styled.div`
         }
         header h1, span {
             display: inline;
+            width: 114px;
             font-size: 70px;
             font-weight: 400;
         }

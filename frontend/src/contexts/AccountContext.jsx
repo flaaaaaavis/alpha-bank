@@ -4,19 +4,27 @@ export const AccountContext=createContext({});
 
 export const AccountProvider = (props) => {
 
-    const [number, setNumber] = useState("123456123456-78");
-    const [uuid , setUuid] = useState("random uuid only for testing");
-    const [balance, setBalance] = useState(100000,23);
+    const [number, setNumber] = useState("");
+    const [uuid , setUuid] = useState("");
+    const [balance, setBalance] = useState(0);
+
+    async function collectAccount() {
+        const response = await fetch("http://localhost:4000/account", {credentials: 'include'})
+                               .then(data => data.json())
+                               .then(resposta => resposta)
+                               .catch(error=> console.log(error));
+        setNumber(response.account.number);
+        setUuid(response.account.uuid);
+        setBalance(parseFloat(response.account.balance));
+    }
 
     return (
         <AccountContext.Provider
             value={{
                 number,
-                setNumber,
                 uuid,
-                setUuid,
                 balance,
-                setBalance
+                collectAccount
             }}
         >
             {props.children}

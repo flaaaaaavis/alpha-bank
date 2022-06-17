@@ -2,8 +2,10 @@ import { GlobalStyle } from './style/style.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DepositArea from './pages/DepositArea.jsx';
 import LoginPage from './pages/LoginPage.jsx';
-import CustomerArea from './pages/customerArea/CustomerArea.jsx';
+import CustomerPage from './pages/CustomerPage.jsx';
+import AccountPage from './pages/AccountPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+import { RegisterBoxPassword } from './components/RegisterBox/RegisterBox.jsx'
 import RecoverPage from './pages/RecoverPage.jsx';
 import Statements from './pages/Statements.jsx'
 import Transactions from './pages/Transactions.jsx'
@@ -15,6 +17,7 @@ import { CardProvider } from "./contexts/CardContext";
 import { TransactionsProvider } from "./contexts/TransactionContext";
 
 function App() {
+
   return (
     <>
     {/* <AccountProvider><UserProvider><CardProvider><TransactionsProvider> */}
@@ -23,7 +26,39 @@ function App() {
       {/* <LoginPage />
       <Router>
       <Routes>
-       
+      <Route path ='/'
+             element={<LoginPage />}
+      />
+      <Route path ='/recover'
+             element={<RecoverPage />}
+      />
+      <Route path='/statements'
+             element={<Statements />}
+      ></Route>
+      <Route path='/registration'
+             element={<RegisterPage />}
+      ></Route>
+      <Route path='/transactions'
+             element={<Transactions />}
+      ></Route>
+      <Route path='/deposit'
+             element={<DepositArea />}
+      ></Route>
+      <Route path='/deposit/amount'
+             element={<DepositAmount />}
+      ></Route>
+      <Route path='/registrationpassword'
+             element={<RegisterBoxPassword />}
+      ></Route>
+       <Route path='/cardarea'
+             element={<CardArea />}
+      ></Route>
+      <Route path='/customerpage' 
+              element={<CustomerPage />}
+      ></Route>
+      <Route path='/accountpage'
+             element={<AccountPage />}
+      ></Route>
       </Routes>
     </Router> */}
       <Transactions />

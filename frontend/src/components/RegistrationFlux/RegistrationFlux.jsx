@@ -1,15 +1,21 @@
 import React from 'react';
 import { SForm, SInput, SRegisterBtn, SRegisterPage, RegisterFormDiv, SFrontPageImg, SFrontPageLogo, SLogoText, SRegisterFormTitle, SPasswordChangedText } from '../RegisterBox/RegisterBox.js'
 import changedPasswordImg from '../../images/changed-password.png'
+import { useNavigate } from 'react-router-dom'
+
 
 function RegisterPassword() {
+
+    let navigate = useNavigate()
+
     return <SForm>
         <RegisterFormDiv>
             <SRegisterFormTitle>Dados de Acesso</SRegisterFormTitle>
             <SInput type='text' placeholder='Senha'></SInput>
             <SInput type='text' placeholder='Confirme Sua Senha'></SInput>
             <br />
-            <SRegisterBtn>Continuar</SRegisterBtn>
+            <SRegisterBtn> Continuar
+            </SRegisterBtn>
         </RegisterFormDiv>
     </SForm>
 }
@@ -52,6 +58,8 @@ function PasswordChanged() {
 
 function RegisterForm() {
 
+    let navigate = useNavigate()
+
     return <SForm>
         <RegisterFormDiv>
             <SRegisterFormTitle>Faça Sua Conta</SRegisterFormTitle>
@@ -59,7 +67,9 @@ function RegisterForm() {
             <SInput type='text' placeholder='CPF'></SInput>
             <SInput type='text' placeholder='E-mail'></SInput>
             <SInput type='text' placeholder='Data de Nascimento'></SInput>
-            <SRegisterBtn>Continuar</SRegisterBtn>
+            <SRegisterBtn onClick={() => {
+                        navigate('/registrationpassword')
+            }}>Continuar</SRegisterBtn>
         </RegisterFormDiv>
     </SForm>
 }

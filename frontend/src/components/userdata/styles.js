@@ -21,8 +21,7 @@ export const StyledTitle = Styled.h1`
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
-    font-size: 48px;
-    line-height: 61px;
+    font-size: 32px;
     display: flex;
     align-items: center;
     text-indent: 30px;
@@ -38,8 +37,7 @@ export const StyledP = Styled.h3`
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
-    font-size: 48px;
-    line-height: 61px;
+    font-size: 32px;
     display: flex;
     align-items: center;
     text-indent: 30px;
@@ -48,4 +46,6 @@ export const StyledP = Styled.h3`
 
 export const StyledButton = Styled.button`
     width: 50px;
+    border: none;
+    background-color: #f5f5f5;
 `;

@@ -67,36 +67,17 @@ router.get("/transactions", async (req, res) => {
         const transactions = await pool.query(`SELECT * 
                                                FROM transactions 
                                                WHERE sender_account = ${account.id} OR receiver_account = ${account.id}`);
-
         if (transactions.rows[0] === undefined) res.status(401).json({ message:"Nenhuma transação realizada"});
+        transactions.rows.forEach(element => {
+            element.value = (element.sender_account === account.id)? parseFloat(element.value) * -1 : parseFloat(element.value)
+        });
+
         res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
 
     } catch (error) {
         console.log(error); 
     }
 });
-
-// router.get("/AllTransactions", async (req, res) => {
-//     try {
-//         const token = req.cookies.token;
-//         const user = jwtController.verify(token, process.env.SECRET);
-
-//         let account = await pool.query(`SELECT id 
-//                                         FROM accounts 
-//                                         WHERE user_id = ${user.user_id}`);
-//         account = account.rows[0];
-
-//         const transactions = await pool.query(`SELECT * 
-//                                                FROM transactions 
-//                                                WHERE sender_id = ${account};`);
-
-//         if (transactions.rows === []) res.status(401).json({ message:"Nenhuma transação realizada"});
-//         res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
-
-//     } catch (error) {
-//         console.log(error); 
-//     }
-// });
 
 //Informações do Cartão
 router.get("/card", async (req, res) => {
@@ -113,6 +94,29 @@ router.get("/card", async (req, res) => {
         card = card.rows[0];
 
         res.status(200).json({ message:"Done and Done", card: card });
+
+    } catch (error) {
+
+        console.log(error); 
+
+    }
+
+});
+
+//Informações do Usuário
+router.get("/user", async (req, res) => {
+
+    try {
+
+        const token = req.cookies.token;
+        const user = jwtController.verify(token, process.env.SECRET);
+
+        let userData = await pool.query(`SELECT * 
+                                        FROM users 
+                                        WHERE id = (${user.user_id})`);
+        userData = userData.rows[0];
+
+        res.status(200).json({ message:"Done and Done", user: userData });
 
     } catch (error) {
 
