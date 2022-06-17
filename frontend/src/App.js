@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import CustomerPage from './pages/CustomerPage.jsx';
 import AccountPage from './pages/AccountPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
-import { RegisterBoxPassword } from './components/RegisterBox/RegisterBox.jsx'
+import { RegisterBoxPassword, RegisterCodeEmail } from './components/RegisterBox/RegisterBox.jsx'
 import RecoverPage from './pages/RecoverPage.jsx';
 import Statements from './pages/Statements.jsx'
 import Transactions from './pages/Transactions.jsx'
@@ -48,6 +48,9 @@ function App() {
       ></Route>
       <Route path='/registrationpassword'
              element={<RegisterBoxPassword />}
+      ></Route>
+      <Route path='/registrationemailcode'
+             element={<RegisterCodeEmail />}
       ></Route>
        <Route path='/cardarea'
              element={<CardArea />}
