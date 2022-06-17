@@ -11,7 +11,6 @@ export const TransactionsProvider = (props) => {
                                .then(data => data.json())
                                .then(resposta => resposta)
                                .catch(error=> console.log(error));
-        console.log(response);
         const array = [];
         response.transactions.forEach(element => {
             const dado = {
