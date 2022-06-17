@@ -23,5 +23,6 @@ export const StyledTransactionsBox = styled.div`
             background: #ffffff;
             border-radius: 20px;
             padding-top: 32px;
+            overflow-y: scroll;
         }
 `;
