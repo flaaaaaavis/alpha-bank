@@ -2,26 +2,50 @@ import React, {useState, useContext} from 'react';
 import { StyledDepositFake } from './style'
 import { AccountContext } from '../../contexts/AccountContext';
 import { UserContext } from '../../contexts/UserContext';
+import { TransactionsContext } from '../../contexts/TransactionContext';
+import { useNavigate } from 'react-router-dom'
 
 function DepositFake() {
+
+  const { collectTransactions } = useContext(TransactionsContext);
+  const { collectAccount } = useContext(AccountContext);
+
+  let navigate = useNavigate()
 
   const { number } = useContext(AccountContext);
   const { id } = useContext(UserContext)
   const [amount, setAmount] = useState('');
 
   async function handleDeposit(e) {
-    e.preventDefault();
+    e.preventDefault();    
 
-    const today = new Date();
-
-    const data = `${today.getFullYear()}-${(today.getMonth)+1}-${today.getDate}`
+    const newDeposit = {
+      account_number: number,
+      amount: amount,
+      id: id
+    }
     
     const options = {
-      method: 'POST',
-      body: {account_number: number, amount: amount, id: id, date: data},
+      method: 'PUT',
+      mode: 'cors',
+      credentials: 'include',
+      body: JSON.stringify(newDeposit),
+      headers: { 'Content-Type': 'application/json' }
     }
 
-    fetch('http://localhost/deposit', options)
+    const response = await fetch('http://localhost:4000/deposit', options)
+                           .then(data => data.json())
+                           .then(res => {console.log(res); return res })
+                           .catch(error => console.log(error))
+    if (response.added) {
+
+      collectAccount();
+      collectTransactions();
+      navigate('/customerpage')
+
+    } else {
+      console.log(response)
+    }
 
   }
 
