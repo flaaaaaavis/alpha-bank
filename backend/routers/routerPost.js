@@ -11,6 +11,7 @@ const { json } = require("express");
 router.post('/login', async (req, res) => { 
 
     const { email, password } = req.body;
+    console.log(req.body)
     try {
         let dbUserPassword = await pool.query(`SELECT password 
                                                  FROM users 

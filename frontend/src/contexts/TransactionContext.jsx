@@ -4,33 +4,27 @@ export const TransactionsContext=createContext({});
 
 export const TransactionsProvider = (props) => {
 
-    const [transactions, setTransactions] = useState(
-        [
-            {
-                "description": "Pix Enviado",
-                "date":"29/05/2022 16:20",
-                "value":"-95,49",                
-            }, {
-                "description": "Débito",
-                "date":"29/05/2022 11:15",
-                "value":"-75,00"
-            }, {
-                "description": "Depósito online",
-                "date":"27/05/2022 06:10",
-                "value":"100,00"
-            }, {
-                "description": "Herança",
-                "date":"22/04/2022 09:12",
-                "value":"100,070,72"
+    const [transactions, setTransactions] = useState([]);
+
+    async function collectTransactions() {
+        const response = await fetch("http://localhost:4000/transactions");
+        const array = [];
+        response.rows.forEach(element => {
+            const dado = {
+                "description": element.description,
+                "date": element.date,
+                "value":element.value
             }
-        ]
-    );   
+            array.push(dado)
+        });
+        setTransactions(array);
+    }
 
     return (
         <TransactionsContext.Provider
             value={{
                 transactions,
-                setTransactions
+                collectTransactions
             }}
         >
             {props.children}

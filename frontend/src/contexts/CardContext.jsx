@@ -8,15 +8,20 @@ export const CardProvider = (props) => {
     const [expirityDate , setExpirityDate] = useState("12/37");
     const [SSID, setSSID] = useState("567");
 
+    async function collectCard() {
+        const response = await fetch("http://localhost:4000/card");
+        setCardNumber(response.rows[0].number);
+        setExpirityDate(response.rows[0].expirity_date);
+        setSSID(response.rows[0].ssid);
+    }
+
     return (
         <CardContext.Provider
             value={{
                 cardNumber,
-                setCardNumber,
                 expirityDate,
-                setExpirityDate,
                 SSID,
-                setSSID
+                collectCard
             }}
         >
             {props.children}

@@ -4,19 +4,24 @@ export const AccountContext=createContext({});
 
 export const AccountProvider = (props) => {
 
-    const [number, setNumber] = useState("123456123456-78");
-    const [uuid , setUuid] = useState("random uuid only for testing");
-    const [balance, setBalance] = useState(100000,23);
+    const [number, setNumber] = useState("");
+    const [uuid , setUuid] = useState("");
+    const [balance, setBalance] = useState(0);
+
+    async function collectAccount() {
+        const response = await fetch("http://localhost:4000/card");
+        setNumber(response.rows[0].number);
+        setUuid(response.rows[0].uuid);
+        setBalance(parseFloat(response.rows[0].balance));
+    }
 
     return (
         <AccountContext.Provider
             value={{
                 number,
-                setNumber,
                 uuid,
-                setUuid,
                 balance,
-                setBalance
+                collectAccount
             }}
         >
             {props.children}

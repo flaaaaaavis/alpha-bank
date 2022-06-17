@@ -67,8 +67,11 @@ router.get("/transactions", async (req, res) => {
         const transactions = await pool.query(`SELECT * 
                                                FROM transactions 
                                                WHERE sender_account = ${account.id} OR receiver_account = ${account.id}`);
-
         if (transactions.rows[0] === undefined) res.status(401).json({ message:"Nenhuma transação realizada"});
+        transactions.rows.forEach(element => {
+            element.value = (element.sender_account === account.id)? parseFloat(element.value) * -1 : parseFloat(element.value)
+        });
+
         res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
 
     } catch (error) {
@@ -113,6 +116,30 @@ router.get("/card", async (req, res) => {
         card = card.rows[0];
 
         res.status(200).json({ message:"Done and Done", card: card });
+
+    } catch (error) {
+
+        console.log(error); 
+
+    }
+
+});
+
+//Informações do Usuário
+router.get("/user", async (req, res) => {
+
+    try {
+
+        const token = req.cookies.token;
+        const user = jwtController.verify(token, process.env.SECRET);
+        console.log(user)
+
+        let userData = await pool.query(`SELECT * 
+                                        FROM users 
+                                        WHERE id = (${user.user_id})`);
+        userData = userData.rows[0];
+
+        res.status(200).json({ message:"Done and Done", user: userData });
 
     } catch (error) {
 
