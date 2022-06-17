@@ -8,5 +8,4 @@ export const StyledDiv = Styled.div`
     width: 50vw;
     flex-wrap: wrap;
     margin-top: 10vh;
-    height: 100vh;
 `;
