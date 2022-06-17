@@ -21,7 +21,7 @@ function Form3({ showData, handleData }) {
         // console.log(showData)
 
         try {
-            await fetch('http://localhost:5000//transaction', {
+            await fetch('http://localhost:4000//transaction', {
                 method: 'PUT',
                 mode: 'cors',
                 headers: {

@@ -33,6 +33,7 @@ function DepositFake() {
       headers: { 'Content-Type': 'application/json' }
     }
 
+<<<<<<< HEAD
     const response = await fetch('http://localhost:4000/deposit', options)
                            .then(data => data.json())
                            .then(res => {console.log(res); return res })
@@ -46,6 +47,9 @@ function DepositFake() {
     } else {
       console.log(response)
     }
+=======
+    fetch('http://localhost:4000/deposit', options)
+>>>>>>> ca606443e926f03c6ccb58913b04f0de9954b6af
 
   }
 
