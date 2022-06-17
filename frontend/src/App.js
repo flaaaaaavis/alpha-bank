@@ -20,6 +20,7 @@ function App() {
 
   return (
     <>
+    <UserProvider><AccountProvider><CardProvider><TransactionsProvider>
     <GlobalStyle />
     <Router>
       <Routes>
@@ -52,6 +53,7 @@ function App() {
       ></Route>
       </Routes>
     </Router>
+    </TransactionsProvider></CardProvider></AccountProvider></UserProvider>
     </>    
   );
 }
