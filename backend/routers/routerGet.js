@@ -66,7 +66,8 @@ router.get("/transactions", async (req, res) => {
 
         const transactions = await pool.query(`SELECT * 
                                                FROM transactions 
-                                               WHERE sender_account = ${account.id} OR receiver_account = ${account.id}`);
+                                               WHERE sender_account = ${account.id} OR receiver_account = ${account.id}
+                                               ORDER BY created_at`);
         if (transactions.rows[0] === undefined) res.status(401).json({ message:"Nenhuma transação realizada"});
         transactions.rows.forEach(element => {
             element.value = (element.sender_account === account.id)? parseFloat(element.value) * -1 : parseFloat(element.value)

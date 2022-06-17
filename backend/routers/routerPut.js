@@ -55,7 +55,7 @@ router.put('/transaction', async (req, res) => {
 
     try {
 
-        pool.query("BEGIN TRANSACTION");
+        
         const senderBalance = await pool.query(`SELECT balance 
                                                 FROM accounts 
                                                 WHERE number = (${sender_account})`);
@@ -67,6 +67,8 @@ router.put('/transaction', async (req, res) => {
         const receiverBalance = await pool.query(`SELECT balance FROM accounts WHERE number = (${receiver_account})`)
         let newReceiverBalance = parseFloat(amount) + parseFloat(receiverBalance.rows[0].balance);
         let newSenderBalance = parseFloat(senderBalance.rows[0].balance) - parseFloat(amount);
+
+        pool.query("BEGIN TRANSACTION");
 
         newReceiverBalance = await pool.query(`UPDATE accounts
                                             SET balance = ${newReceiverBalance.toFixed(2)}
