@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext}  from 'react';
 import { StyledDiv, StyledTitleContainer, StyledTitle, StyledButton, StyledData, StyledP } from './styles.js'
 import lapis from '../../images/lapis.png'
+import { UserContext } from '../../contexts/UserContext';
 
 function UserData(props) {
+    const { name, cpf, bDate } = useContext(UserContext)
     return(
         <StyledDiv>
             <StyledTitleContainer>
@@ -10,9 +12,9 @@ function UserData(props) {
                 <StyledButton><img src={lapis} alt="editar" /></StyledButton>
             </StyledTitleContainer>
             <StyledData>
-                <StyledP> Fulano de Carvalho {props.name} </StyledP>
-                <StyledP> 123.456.789-00{props.CPF}</StyledP>
-                <StyledP> 12/06/1900 {props.birth}</StyledP>
+                <StyledP> { name } </StyledP>
+                <StyledP> { cpf }</StyledP>
+                <StyledP> { bDate }</StyledP>
             </StyledData>
         </StyledDiv>
     );
