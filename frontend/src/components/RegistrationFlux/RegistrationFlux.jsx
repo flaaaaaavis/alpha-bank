@@ -14,19 +14,25 @@ function RegisterPassword() {
             <SInput type='text' placeholder='Senha'></SInput>
             <SInput type='text' placeholder='Confirme Sua Senha'></SInput>
             <br />
-            <SRegisterBtn> Continuar
+            <SRegisterBtn onClick={() => {
+                        navigate('/registrationemailcode')
+            }}> Continuar
             </SRegisterBtn>
         </RegisterFormDiv>
     </SForm>
 }
 
 function SendEmailCode() {
+
+    let navigate = useNavigate()
     return <SForm>
         <RegisterFormDiv>
             <SRegisterFormTitle>Código Enviado!</SRegisterFormTitle>
             <SInput type='text' placeholder='Código Enviado'></SInput>
             <br />
-            <SRegisterBtn>Prosseguir</SRegisterBtn>
+            <SRegisterBtn onClick={() => {
+                        navigate('/')
+            }}>Prosseguir</SRegisterBtn>
         </RegisterFormDiv>
     </SForm>
 
