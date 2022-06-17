@@ -4,6 +4,7 @@ import RegisterBox from './RegisterBox';
 export const SRegisterPage = styled.div`
 width: 100%;
 height: 1000px;
+background-color: #D2DCDB;
 
 `
 export const SRegisterFormTitle = styled.h1`
