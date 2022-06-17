@@ -4,7 +4,6 @@ import CardAreaTransactionCard from '../CardAreaTransactionCard.jsx/CardAreaTran
 import { TransactionsContext } from '../../contexts/TransactionContext';
 
 function TransactionsBox() {
-
   const { transactions } = useContext(TransactionsContext);
 
   return (

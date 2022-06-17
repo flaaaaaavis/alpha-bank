@@ -28,8 +28,7 @@ function SendEmailCode() {
     let navigate = useNavigate()
     return <SForm>
         <RegisterFormDiv>
-            <SRegisterFormTitle>Código Enviado!</SRegisterFormTitle>
-            <SInput type='text' placeholder='Código Enviado'></SInput>
+            <SRegisterFormTitle>Usuário Criado!</SRegisterFormTitle>
             <br />
             <SRegisterBtn onClick={() => {
                         navigate('/')
@@ -59,7 +58,7 @@ function SetPassword() {
 function PasswordChanged() {
 
     let navigate = useNavigate()
-    
+
     return <SForm>
         <RegisterFormDiv>
             <img src={changedPasswordImg} alt="" />
