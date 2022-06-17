@@ -1,5 +1,5 @@
-import UserData from "../userdata/userdata";
-import AccessData from "../accessdata/accessdata";
+import UserData from "../UserData/UserData.jsx";
+import AccessData from "../AccessData/AccessData.jsx";
 import { StyledAccountArea } from "./styles.js";
 
 function AccountArea() {
