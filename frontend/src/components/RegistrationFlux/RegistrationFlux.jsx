@@ -39,24 +39,36 @@ function SendEmailCode() {
 }
 
 function SetPassword() {
+
+    let navigate = useNavigate()
+
     return <SForm>
         <RegisterFormDiv>
             <SRegisterFormTitle>Altere Sua Senha</SRegisterFormTitle>
             <SInput type='text' placeholder='Nova Senha'></SInput>
             <SInput type='text' placeholder='Confirme a Nova Senha'></SInput>
             <br />
-            <SRegisterBtn>Alterar</SRegisterBtn>
+            <SRegisterBtn onClick={() => {
+                        navigate('/modifiedpassword')
+            }}>Alterar</SRegisterBtn>
         </RegisterFormDiv>
     </SForm>
 }
 
 function PasswordChanged() {
+
+    let navigate = useNavigate()
+    
     return <SForm>
         <RegisterFormDiv>
             <img src={changedPasswordImg}></img>
             <SPasswordChangedText>Senha Alterada!</SPasswordChangedText>
             <br />
-            <SRegisterBtn>Retornar ao Login</SRegisterBtn>
+            <SRegisterBtn onClick={() => {
+                        navigate('/')
+            }}>
+                Retornar ao Login
+            </SRegisterBtn>
         </RegisterFormDiv>
     </SForm>
 

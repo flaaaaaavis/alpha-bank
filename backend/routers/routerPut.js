@@ -51,10 +51,11 @@ router.put('/deposit', async (req, res) => {
 
 router.put('/transaction', async (req, res) => {
 
-    const { amount, sender_account, receiver_account } = req.body;
+    const { amount, sender_account, receiver_account, id, date, description } = req.body;
 
     try {
 
+        
         const senderBalance = await pool.query(`SELECT balance 
                                                 FROM accounts 
                                                 WHERE number = (${sender_account})`);
@@ -67,6 +68,8 @@ router.put('/transaction', async (req, res) => {
         let newReceiverBalance = parseFloat(amount) + parseFloat(receiverBalance.rows[0].balance);
         let newSenderBalance = parseFloat(senderBalance.rows[0].balance) - parseFloat(amount);
 
+        pool.query("BEGIN TRANSACTION");
+
         newReceiverBalance = await pool.query(`UPDATE accounts
                                             SET balance = ${newReceiverBalance.toFixed(2)}
                                             WHERE number = ${receiver_account}
@@ -75,7 +78,11 @@ router.put('/transaction', async (req, res) => {
         newSenderBalance = await pool.query(`UPDATE accounts
                                             Set balance = ${newSenderBalance.toFixed(2)}
                                             WHERE number = ${sender_account}
-                                            RETURNING balance`)
+                                            RETURNING balance`);
+
+        await pool.query(`INSERT INTO transactions(created_by, created_at, sender_account, receiver_account, value, date, description ) VALUES (${id}, NOW()::TIMESTAMP, ${sender_account} ,${receiver_account}, ${amount}, ${date}, ${description} )`)
+
+        pool.query("COMMIT TRANSACTION");
 
         res.status(200).json({"message":`Transferido! Saldo atual: ${newSenderBalance.rows[0].balance}`})
 

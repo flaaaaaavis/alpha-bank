@@ -1,10 +1,12 @@
 import React from 'react';
 import { SForm, SInput, SRegisterBtn, SRegisterPage, RegisterFormDiv, SFrontPageImg, SFrontPageLogo, SLogoText, SRegisterFormTitle } from './RegisterBox.js'
-import { RegisterForm, RegisterPassword, SendEmailCode }  from '../RegistrationFlux/RegistrationFlux.jsx'
+import { RegisterForm, RegisterPassword, SendEmailCode, SetPassword, PasswordChanged }  from '../RegistrationFlux/RegistrationFlux.jsx'
 import frontImage from '../../images/front-image.png'
 import logo from '../../images/logo.png'
 import logoText from '../../images/AlphaBank.png'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
+
 
 function RegisterBox() {
     return <SRegisterPage>
@@ -39,5 +41,31 @@ function RegisterCodeEmail() {
     ;
 }
 
+function ChangePassword() {
 
-export { RegisterBox, RegisterBoxPassword, RegisterCodeEmail };
+
+    return <SRegisterPage>
+    <SetPassword></SetPassword>
+    <SLogoText src={logoText} alt='smth3'></SLogoText>
+    <SFrontPageLogo src={logo} alt="smth2"></SFrontPageLogo>
+    <SFrontPageImg src={frontImage} alt='smth'></SFrontPageImg>
+    </SRegisterPage>
+    ;
+
+}
+
+function ModifiedPassword() {
+
+    return <SRegisterPage>
+    <PasswordChanged></PasswordChanged>
+    <SLogoText src={logoText} alt='smth3'></SLogoText>
+    <SFrontPageLogo src={logo} alt="smth2"></SFrontPageLogo>
+    <SFrontPageImg src={frontImage} alt='smth'></SFrontPageImg>
+    </SRegisterPage>
+    ;
+
+
+}
+
+
+export { RegisterBox, RegisterBoxPassword, RegisterCodeEmail, ChangePassword, ModifiedPassword };
