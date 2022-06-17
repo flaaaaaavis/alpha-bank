@@ -41,7 +41,7 @@ router.put('/deposit', async (req, res) => {
                                    WHERE number = ${account_number}
                                    RETURNING balance`);
     
-    await pool.query(`INSERT INTO transactions(created_by, created_at, sender_account, receiver_account, value, date, description ) VALUES (${id}, NOW()::TIMESTAMP,  )`)
+    await pool.query(`INSERT INTO transactions(created_by, created_at, receiver_account, value, date, description ) VALUES (${id}, NOW()::TIMESTAMP, ${account_number}, ${amount}, ${date}, 'Deposito Online' )`)
 
     pool.query('COMMIT TRANSACTION')    
 

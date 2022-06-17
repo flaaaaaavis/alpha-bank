@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
+
+import { AccountContext } from '../../../contexts/AccountContext';
 
 function Form3({ showData, handleData }) {
     const [value, setValue] = useState('');
+    const {number} = useContext(AccountContext)
 
     let navigate = useNavigate();
 
@@ -22,11 +25,12 @@ function Form3({ showData, handleData }) {
                 },
                 body: JSON.stringify({
                     "amount": showData.value,
-                    "sender_account": "",
+                    "sender_account": number,
                     "receiver_account": showData.account
                 })
-            }).then((response) => response.json()
-            ).then()
+            }).then((response) => {
+                if(response.status === 200) navigate('/form4')
+            })
         } catch (error) {
             console.log(error)
             navigate('/formError')
@@ -35,7 +39,7 @@ function Form3({ showData, handleData }) {
     return <>
         <h3>Quanto irá transferir?</h3>
         <input value={value} onInput={(e) => setValue(e.target.value)} type="number" min="0.00" step="0.01" />
-        <Link onClick={getValue} to="/form4"><button>Continuar</button></Link>
+        <Link onClick={getValue} to="#"><button>Continuar</button></Link>
     </>
 }
 

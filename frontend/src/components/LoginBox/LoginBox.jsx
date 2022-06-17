@@ -1,10 +1,8 @@
 import React, {useState, useContext} from 'react';
-import { SForm, SInput, SLoginBtn, SLoginPage, LoginFormDiv, SFrontPageImg, SFrontPageLogo, SLogoText, SLoginFormTitle, SBelowBtnTxt } from './LoginBox.js'
-import { RegisterPassword, SendEmailCode, SetPassword, PasswordChanged } from '../RegistrationFlux/RegistrationFlux.jsx'
-import loginImage from '../../images/login-img.png'
-import logo from '../../images/logo.png'
-import logoText from '../../images/AlphaBank.png'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { SForm, SInput, SLoginBtn, SLoginPage, LoginFormDiv, SFrontPageImg, SFrontPageLogo, SLogoText, SLoginFormTitle, SBelowBtnTxt } from './LoginBox.js';
+import loginImage from '../../images/login-img.png';
+import logo from '../../images/logo.png';
+import logoText from '../../images/AlphaBank.png';
 import { useNavigate } from 'react-router-dom';
 import { AccountContext } from '../../contexts/AccountContext';
 import { UserContext } from '../../contexts/UserContext';
