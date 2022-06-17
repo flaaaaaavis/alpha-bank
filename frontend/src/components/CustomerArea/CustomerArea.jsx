@@ -1,5 +1,5 @@
-import ButtonArea from "../buttonArea/ButtonArea.jsx";
-import InfoAccountArea from "../infoAccountArea/InfoAccountArea.jsx";
+import ButtonArea from "../ButtonArea/ButtonArea.jsx";
+import InfoAccountArea from "../InfoAccountArea/InfoAccountArea.jsx";
 import { StyledCustomerArea }from "./styles.js";
 
 function CustomerArea() {
@@ -7,7 +7,7 @@ function CustomerArea() {
       <StyledCustomerArea>
         <InfoAccountArea />,
         <ButtonArea />
-    </StyledCustomerArea>
+      </StyledCustomerArea>
   );
 }
 

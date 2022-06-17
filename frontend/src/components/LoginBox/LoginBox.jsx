@@ -21,7 +21,7 @@ function LoginBox() {
                     <SInput type='text' placeholder='CPF' />
                     <SInput type='text' placeholder='Senha' />
                     <SLoginBtn onClick={() => {
-                        navigate('/customerarea')
+                        navigate('/customerpage')
                     }}> Continuar 
                     </SLoginBtn>
                     <SBelowBtnTxt> Esqueci Minha Senha </SBelowBtnTxt>

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const SLoginPage = styled.section`
     width: 100%;
     height: 1000px;
+    background-color: #D2DCDB;
 `
 export const SLoginFormTitle = styled.h1`
     display: flex;

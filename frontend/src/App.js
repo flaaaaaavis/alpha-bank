@@ -1,9 +1,8 @@
 import { GlobalStyle } from './style/style.js';
-import { BrowserRouter as Router, Routes, Route, Link, } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DepositArea from './pages/DepositArea.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import CustomerPage from './pages/CustomerPage.jsx';
-import CustomerArea from './components/CustomerArea/CustomerArea.jsx';
 import AccountPage from './pages/AccountPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import { RegisterBoxPassword } from './components/RegisterBox/RegisterBox.jsx'
@@ -27,18 +26,30 @@ function App() {
       <Route path ='/'
              element={<LoginPage />}
       />
-
+      <Route path='/statements'
+             element={<Statements />}
+      ></Route>
       <Route path='/registration'
              element={<RegisterPage />}
       ></Route>
-
+      <Route path='/transactions'
+             element={<Transactions />}
+      ></Route>
+      <Route path='/deposit'
+             element={<DepositArea />}
+      ></Route>
       <Route path='/registrationpassword'
              element={<RegisterBoxPassword />}
       ></Route>
-
-       <Route path='/customerarea' 
-              element={<CustomerArea />}>
-       </Route>
+       <Route path='/cardarea'
+             element={<CardArea />}
+      ></Route>
+      <Route path='/customerpage' 
+              element={<CustomerPage />}
+      ></Route>
+      <Route path='/accountpage'
+             element={<AccountPage />}
+      ></Route>
       </Routes>
     </Router>
     </>    
