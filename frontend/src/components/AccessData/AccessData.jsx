@@ -16,7 +16,7 @@ function AccessData(props) {
                 </StyledTitleContainer>
                 <StyledData>
                     <StyledEmail> email@email.com { email }</StyledEmail>
-                    <StyledPassword> ********** {props.password}</StyledPassword>
+                    <StyledPassword> ********** </StyledPassword>
                 </StyledData>
             </StyledDiv>
                     <StyledButtonDelete

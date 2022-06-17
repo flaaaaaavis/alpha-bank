@@ -1,29 +1,51 @@
+import React, {useContext} from 'react';
 import { StyledDiv, StyledTable, StyledTitle, StyledTd }from "./styles.js";
 import Saldo from "../Saldo/Saldo.jsx";
+import { TransactionsContext } from '../../contexts/TransactionContext';
+import CardAreaTransactionCard from '../CardAreaTransactionCard.jsx/CardAreaTransactionCard copy.jsx';
  
 function InfoAccountArea() {
+  const { transactions } = useContext(TransactionsContext)
+  let lasttransactions = [];
+  lasttransactions = transactions.filter((item, index) => index > (transactions.lenght - 4));
   return (
     <StyledDiv>
         <Saldo />
         <StyledTitle text-align="center">Últimas Transações</StyledTitle>
-        <StyledTable>
-        <thead>
+        {
+             lasttransactions.map((transaction, index) => <CardAreaTransactionCard key={index} description={transaction.description} value={transaction.value} />)
+        }
+        {/* <StyledTable> */}
+        {/* <thead>
         <tbody>
           <tr>
-            <td>Pix Enviado</td>
-            <StyledTd>R$ -95,00</StyledTd>
+            <td>{ description }</td>
+            <td>{ date }</td>
+            <StyledTd>R$ { value }</StyledTd>
           </tr>
           <tr>
-            <td>Débito</td>
-            <StyledTd>R$ -75,00</StyledTd>
+            <td>{ description }</td>
+            <td>{ date }</td>
+            <StyledTd>R$ { value }</StyledTd>
           </tr>
           <tr>
-            <td>Depósito online   </td>
-            <StyledTd>R$ +100,00</StyledTd>
+            <td>{ description }</td>
+            <td>{ date }</td>
+            <StyledTd>R$ { value }</StyledTd>
+          </tr>
+          <tr>
+            <td>{ description }</td>
+            <td>{ date }</td>
+            <StyledTd>R$ { value }</StyledTd>
+          </tr>
+          <tr>
+            <td>{ description }</td>
+            <td>{ date }</td>
+            <StyledTd>R$ { value }</StyledTd>
           </tr>
         </tbody>
       </thead>
-        </StyledTable>
+        </StyledTable> */}
     </StyledDiv>
   );
 }
