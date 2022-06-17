@@ -5,5 +5,6 @@ export const StyledCustomerArea = Styled.div`
     flex-direction: row;
     justify-content: space-around;
     background-color: #D2DCDB;
-    width 100%;
+    width: 100%;
+    height: 100%;
 `;

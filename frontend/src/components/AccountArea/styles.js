@@ -8,4 +8,5 @@ export const StyledAccountArea = Styled.div`
     padding-bottom: 40px;
     background-color: #D2DCDB;
     width: 100%;
+    height: 100%;
 `;
