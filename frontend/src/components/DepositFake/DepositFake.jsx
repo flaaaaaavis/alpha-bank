@@ -11,10 +11,14 @@ function DepositFake() {
 
   async function handleDeposit(e) {
     e.preventDefault();
+
+    const today = new Date
+
+    const data = `${today.getFullYear()}-${(today.getMonth)+1}-${today.getDate}`
     
     const options = {
       method: 'POST',
-      body: {account_number: number, amount: amount, id: id},
+      body: {account_number: number, amount: amount, id: id, date: data},
     }
 
     fetch('http://localhost/deposit', options)
