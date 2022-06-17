@@ -1,4 +1,4 @@
-import { StyledDiv, StyledTable, StyledTitle }from "./styles.js";
+import { StyledDiv, StyledTable, StyledTitle, StyledTd }from "./styles.js";
 import Saldo from "../Saldo/Saldo.jsx";
  
 function InfoAccountArea() {
@@ -11,15 +11,15 @@ function InfoAccountArea() {
         <tbody>
           <tr>
             <td>Pix Enviado</td>
-            <td>R$ -95,00</td>
+            <StyledTd>R$ -95,00</StyledTd>
           </tr>
           <tr>
             <td>Débito</td>
-            <td>R$ -75,00</td>
+            <StyledTd>R$ -75,00</StyledTd>
           </tr>
           <tr>
             <td>Depósito online   </td>
-            <td>R$ +100,00</td>
+            <StyledTd>R$ +100,00</StyledTd>
           </tr>
         </tbody>
       </thead>
