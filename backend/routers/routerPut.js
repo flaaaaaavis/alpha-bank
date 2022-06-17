@@ -26,7 +26,7 @@ router.put('/updateUser', async (req, res) => {
 });
 
 router.put('/deposit', async (req, res) => {
-    console.log(req.body);
+    
     const { amount, account_number } = req.body;
 
     pool.query('BEGIN TRANSACTION');
