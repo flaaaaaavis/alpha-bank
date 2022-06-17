@@ -43,7 +43,7 @@ function Transactions() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/formError" element={<FormError showData={showData} handleData={handleData} />} />
-                        <Route path="/" element={<Form1 showData={showData} handleData={handleData} />} />
+                        <Route path="/transactions" element={<Form1 showData={showData} handleData={handleData} />} />
                         <Route path="/form2" element={<Form2 showData={showData} handleData={handleData} />} />
                         <Route path="/form3" element={<Form3 showData={showData} handleData={handleData} />} />
                         <Route path="/form4" element={<Form4 />} />

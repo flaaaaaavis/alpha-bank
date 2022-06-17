@@ -15,12 +15,13 @@ import { AccountProvider } from "./contexts/AccountContext";
 import { UserProvider } from "./contexts/UserContext"; 
 import { CardProvider } from "./contexts/CardContext";
 import { TransactionsProvider } from "./contexts/TransactionContext";
+import { RegisterProvider } from "./contexts/RegisterContext";
 
 function App() {
 
   return (
     <>
-    <AccountProvider><UserProvider><CardProvider><TransactionsProvider>
+    <AccountProvider><UserProvider><CardProvider><TransactionsProvider><RegisterProvider>
     
       <GlobalStyle />
       <Router>
@@ -69,6 +70,7 @@ function App() {
       ></Route>
       </Routes>
     </Router>
+                        </RegisterProvider>
                     </TransactionsProvider>
                 </CardProvider>
             </UserProvider>
