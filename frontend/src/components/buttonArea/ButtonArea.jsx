@@ -1,4 +1,4 @@
-import Button from "../buttonCustomerArea/Button";
+import Button from "../ButtonCustomerArea/Button";
 import { StyledDiv }from "./styles.js";
 import imageaccount from "../../images/accountLogo.png" 
 import imagecard from "../../images/cardLogo.png" 
