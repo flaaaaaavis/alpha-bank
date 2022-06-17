@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 function Form1({showData, handleData}) {
     const [cpf, setCPF] = useState('');
     const [account, setAccount] = useState('');
+    const [uuid, setUuid] = useState('')
 
     let navigate = useNavigate();
 
