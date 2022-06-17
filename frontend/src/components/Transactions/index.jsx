@@ -7,29 +7,38 @@ import Form2 from './components/form2.jsx'
 import Form3 from './components/form3.jsx'
 import Form4  from './components/form4.jsx'
 import { Main, Form, Panel, Table, TableHead, TableBody } from './index'
+import { useEffect } from 'react';
 
 function Transactions() {
-    const [showData, setShowData] = React.useState({
+    const [showData, setShowData] = useState({
         "path": "/",
         "name": "",
-        "account": ""
+        "account": "",
+        "value": ""
     })
 
-    function handleData(data) {
-        console.log(data)
-        setShowData({...showData,path: data})
-        console.log(showData)
+    async function handleData(data) {
+        setShowData(
+            (prevState) => (
+                {
+                    ...prevState,
+                    ...data
+                }
+            )
+        )        
     }
+
+    useEffect(() => console.log(showData), [showData])
     
     return (
         <Main>
             <Form>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/formError" element={<FormError showData={showData} setShowData={setShowData} />} />
+                        <Route path="/formError" element={<FormError showData={showData} handleData={handleData} />} />
                         <Route path="/" element={<Form1 showData={showData} handleData={handleData} />} />
-                        <Route path="/form2" element={<Form2 showData={showData} setShowData={setShowData} />} />
-                        <Route path="/form3" element={<Form3 showData={showData} setShowData={setShowData} />} />
+                        <Route path="/form2" element={<Form2 showData={showData} handleData={handleData} />} />
+                        <Route path="/form3" element={<Form3 showData={showData} handleData={handleData} />} />
                         <Route path="/form4" element={<Form4 />} />
                     </Routes>
                 </BrowserRouter>

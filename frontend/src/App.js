@@ -17,20 +17,20 @@ import { TransactionsProvider } from "./contexts/TransactionContext";
 function App() {
   return (
     <>
-    <AccountProvider><UserProvider><CardProvider><TransactionsProvider>
+    {/* <AccountProvider><UserProvider><CardProvider><TransactionsProvider> */}
     
       <GlobalStyle />
-      <LoginPage />
+      {/* <LoginPage />
       <Router>
       <Routes>
        
       </Routes>
-    </Router>
-
-                    </TransactionsProvider>
+    </Router> */}
+      <Transactions />
+                    {/* </TransactionsProvider>
                 </CardProvider>
             </UserProvider>
-        </AccountProvider>
+        </AccountProvider> */}
     </>    
   );
 }

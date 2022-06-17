@@ -130,7 +130,9 @@ router.post('/findReceiver', async (req, res) => {
                                         INNER JOIN users
                                         ON user_id = users.id
                                         WHERE cpf = ('${value}')`)
-            res.status(200).json(receiver.rows[0])
+            receiver = receiver.rows[0]
+            console.log(receiver)
+            res.send(receiver)
             break;
         case 'accountCode': 
             console.log('conta')
@@ -147,83 +149,5 @@ router.post('/findReceiver', async (req, res) => {
     }
 
 })
-
-router.post("/accountByCPFnAccount", async (req, res) => {
-
-    try {
-        const cpf = req.body.cpf;
-        const account = req.body.account
-
-        let user = await pool.query(`SELECT * 
-                                    FROM users 
-                                    WHERE CPF = ${cpf}`);
-        user = user.rows[0];
-
-        let accountPool = await pool.query(`SELECT * 
-                                        FROM accounts 
-                                        WHERE number = ${account}`);
-        accountPool = accountPool.rows[0];
-
-
-        res.status(200).json({ message:"Done and Done", "user": user,"account": accountPool});
-
-    } catch (error) {
-
-        console.log(error);
-
-    }
-
-});
-
-router.post("/accountByCPF", async (req, res) => {
-
-    try {
-        const cpf = req.body.cpf;
-        console.log(cpf)
-
-        let user = await pool.query(`SELECT id, name
-                                    FROM users 
-                                    WHERE cpf = ('${cpf}')`);
-        user = user.rows[0];
-
-        let account = await pool.query(`SELECT number
-                                        FROM accounts 
-                                        WHERE user_id = ${user.id}`);
-        account = account.rows[0];
-
-
-        res.status(200).json({ message:"Done and Done", "user": user.name,"account": account.number});
-
-    } catch (error) {
-
-        console.log(error);
-
-    }
-
-});
-
-router.post("/accountByNumber", async (req, res) => {
-
-    try {
-        const accountNumber = req.body.number;
-                
-        let account = await pool.query(`SELECT * 
-                                        FROM accounts 
-                                        WHERE number = ${accountNumber}`);
-        account = account.rows[0];
-
-        let user = await pool.query(`SELECT * 
-                                        FROM users 
-                                        WHERE id = ${account.user_id}`);
-        user = user.rows[0];
-
-        res.status(200).json({ message:"Done and Done", "user": user,"account": account});
-
-    } catch (error) {
-
-        console.log(error);
-
-    }
-});
 
 module.exports = router;
