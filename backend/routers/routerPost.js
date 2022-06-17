@@ -63,20 +63,19 @@ router.post('/login', async (req, res) => {
 
 router.post("/addUser", async (req, res) => {
 
-    const { name, CPF, email, bDate, password } = req.body;
-    const hashedPassword = hashPwd(password);
+    const { name, cpf, email, bDate, password } = req.body;
+    console.log(req.body)
+    const hashedPassword = hashPwd(password); 
 
     //Creating the User
     try {
-        console.log([name, CPF, email, bDate, hashedPassword]);
-
         await pool.query(`BEGIN TRANSACTION`);
 
         const sql = `INSERT INTO users (cpf, name, bdate, email, password, created_at) VALUES ($1, $2, $3, $4, $5, NOW()::TIMESTAMP) RETURNING id`;
-        const values = [ CPF, name, bDate, email, hashedPassword];
+        const values = [ cpf, name, bDate, email, hashedPassword];
         await pool.query(sql, values);
 
-    } catch(error) {
+    } catch(error) { 
         console.log(error)
         res.status(400).send(error)
     }
