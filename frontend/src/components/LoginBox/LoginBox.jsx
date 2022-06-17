@@ -66,7 +66,10 @@ function LoginBox() {
                     <SInput type='text' placeholder='E-mail' value={email} onInput={event => setEmail(event.target.value)} />
                     <SInput type='password' placeholder='Senha' value={password} onInput={event => setPassword(event.target.value)} />
                     <SLoginBtn onClick={handleLogin}>Continuar</SLoginBtn>
-                    <SBelowBtnTxt> Esqueci Minha Senha </SBelowBtnTxt>
+                    <button onClick={() => {
+                        navigate('/changepassword')
+                    }}><SBelowBtnTxt> Esqueci Minha Senha </SBelowBtnTxt>
+                    </button>
                     <button onClick={() => {
                         navigate('/registration')
                     }}>
