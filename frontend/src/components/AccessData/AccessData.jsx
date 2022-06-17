@@ -15,8 +15,7 @@ function AccessData(props) {
                     <StyledButton><img src={lapis} alt="editar" /></StyledButton>
                 </StyledTitleContainer>
                 <StyledData>
-                    <StyledEmail> email@email.com { email }</StyledEmail>
-                    <StyledPassword> ********** </StyledPassword>
+                    <StyledEmail> { email }</StyledEmail>
                 </StyledData>
             </StyledDiv>
                     <StyledButtonDelete

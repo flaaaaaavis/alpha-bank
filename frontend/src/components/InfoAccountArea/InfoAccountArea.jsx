@@ -11,10 +11,10 @@ function InfoAccountArea() {
   return (
     <StyledDiv>
         <Saldo />
-        <StyledTitle text-align="center">Últimas Transações</StyledTitle>
+        {/* <StyledTitle text-align="center">Últimas Transações</StyledTitle>
         {
              lasttransactions.map((transaction, index) => <CardAreaTransactionCard key={index} description={transaction.description} value={transaction.value} />)
-        }
+        } */}
         {/* <StyledTable> */}
         {/* <thead>
         <tbody>

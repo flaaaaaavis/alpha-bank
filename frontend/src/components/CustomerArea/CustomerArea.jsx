@@ -1,11 +1,11 @@
 import ButtonArea from "../ButtonArea/ButtonArea.jsx";
-import InfoAccountArea from "../InfoAccountArea/InfoAccountArea.jsx";
+import Saldo from "../Saldo/Saldo.jsx";
 import { StyledCustomerArea }from "./styles.js";
 
 function CustomerArea() {
   return (
       <StyledCustomerArea>
-        <InfoAccountArea />,
+        <Saldo />,
         <ButtonArea />
       </StyledCustomerArea>
   );

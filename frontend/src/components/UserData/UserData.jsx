@@ -3,7 +3,7 @@ import { StyledDiv, StyledTitleContainer, StyledTitle, StyledButton, StyledData,
 import lapis from '../../images/lapis.png'
 import { UserContext } from '../../contexts/UserContext';
 
-function UserData(props) {
+function UserData() {
     const { name, cpf, bDate } = useContext(UserContext)
     return(
         <StyledDiv>

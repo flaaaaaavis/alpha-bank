@@ -25,7 +25,8 @@ export const StyledDiv = Styled.div`
     background: #FFFFFF;
     border-radius: 20px;
     margin: 30px;
-    padding: 40px;
+    margin-top: 150px;
+    padding: 70px;
 `;    
 
 export const StyledEye = Styled.button`
