@@ -46,7 +46,7 @@ function LoginBox() {
             collectAccount();
             collectCard();
             collectTransactions();
-            navigate('/cardarea');
+            navigate('/customerpage');
 
         } else {
 
