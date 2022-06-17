@@ -11,8 +11,6 @@ import { UserContext } from '../../contexts/UserContext';
 import { TransactionsContext } from '../../contexts/TransactionContext';
 import { CardContext } from '../../contexts/CardContext';
 
-
-
 function LoginBox() {
 
     let navigate = useNavigate();

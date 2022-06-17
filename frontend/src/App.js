@@ -23,7 +23,6 @@ function App() {
     <AccountProvider><UserProvider><CardProvider><TransactionsProvider>
     
       <GlobalStyle />
-      <LoginPage />
       <Router>
       <Routes>
       <Route path ='/'
