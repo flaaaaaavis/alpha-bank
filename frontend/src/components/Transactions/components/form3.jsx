@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
-import { AccountContext } from '../../contexts/AccountContext';
+import { AccountContext } from '../../../contexts/AccountContext';
 
 function Form3({ showData, handleData }) {
     const [value, setValue] = useState('');
