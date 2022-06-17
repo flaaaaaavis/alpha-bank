@@ -7,4 +7,5 @@ export const StyledAccountArea = Styled.div`
     justify-content: space-around;
     padding-bottom: 40px;
     background-color: #D2DCDB;
+    width: 100%;
 `;
