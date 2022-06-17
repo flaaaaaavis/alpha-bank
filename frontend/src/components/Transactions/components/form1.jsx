@@ -12,7 +12,7 @@ function Form1({showData, handleData}) {
     async function getData() {
         if (cpf && account) {
             try {
-                await fetch('http://localhost:5000/findReceiver', {
+                await fetch('http://localhost:4000/findReceiver', {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
@@ -45,7 +45,7 @@ function Form1({showData, handleData}) {
         } else if (cpf && !account) {
             console.log('digitou cpf')
             try {
-                await fetch('http://localhost:5000/findReceiver', {
+                await fetch('http://localhost:4000/findReceiver', {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
@@ -78,7 +78,7 @@ function Form1({showData, handleData}) {
         } else if (account && !cpf) {
             console.log('digitou conta')
             try {
-                await fetch('http://localhost:5000/findReceiver', {
+                await fetch('http://localhost:4000/findReceiver', {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
@@ -111,7 +111,7 @@ function Form1({showData, handleData}) {
         } else if (cpf && !account) {
             console.log('digitou cpf')
             try {
-                await fetch('http://localhost:5000/findReceiver', {
+                await fetch('http://localhost:4000/findReceiver', {
                     method: 'POST',
                     mode: 'cors',
                     headers: {

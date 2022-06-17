@@ -21,7 +21,7 @@ function DepositFake() {
       body: {account_number: number, amount: amount, id: id, date: data},
     }
 
-    fetch('http://localhost/deposit', options)
+    fetch('http://localhost:4000/deposit', options)
 
   }
 

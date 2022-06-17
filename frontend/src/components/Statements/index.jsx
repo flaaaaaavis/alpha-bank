@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { StyledMain, ContainerTop, StyledBalance, StyledAccountBalanceTitle, StyledAccountBalance, StyledBalanceRight, StyledEyeButton, StyledStatementsTable, StyledTableHead, StyledTableBody } from './index'
 /* StyledStatementsFilter, StyledFilterOption*/
 
 import eyeButton from '../../images/eyeButton.png'
 import closedEyeButton from '../../images/closedEyeButton.png'
+
+import { TransactionsContext } from '../../contexts/TransactionContext'
 
 function Statements() {
     const [open, setOpen] = useState(eyeButton)
@@ -15,6 +17,15 @@ function Statements() {
             setOpen(eyeButton)
         }
     }
+
+    const { transactions } = useContext(TransactionsContext);
+
+    let mapReverse1 = transactions.slice(0)
+    mapReverse1 = mapReverse1.reverse()
+    mapReverse1 = mapReverse1.map(element => {
+        return element;
+    });
+
     return (
         <StyledMain>
 
@@ -42,7 +53,22 @@ function Statements() {
                     </tr>
                 </StyledTableHead>
 
-                <StyledTableBody>{}</StyledTableBody>
+                <StyledTableBody>
+                    {
+                        mapReverse1.map(transaction => {
+                            const receiver = transaction.receiver_account;
+                            const date = transaction.date;
+                            const value = transaction.value;
+                            return (
+                                <tr>
+                                    <td>{receiver}</td>
+                                    <td>{date}</td>
+                                    <td>{value}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </StyledTableBody>
             </StyledStatementsTable>
 
         </StyledMain>
