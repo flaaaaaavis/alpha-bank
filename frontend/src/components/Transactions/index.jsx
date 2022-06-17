@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import FormError from './components/formError.jsx'
@@ -7,7 +7,8 @@ import Form2 from './components/form2.jsx'
 import Form3 from './components/form3.jsx'
 import Form4  from './components/form4.jsx'
 import { Main, Form, Panel, Table, TableHead, TableBody } from './index'
-import { useEffect } from 'react';
+
+import { TransactionsContext } from '../../contexts/TransactionContext'
 
 function Transactions() {
     const [showData, setShowData] = useState({
@@ -26,9 +27,16 @@ function Transactions() {
             )
         )        
     }
-
     useEffect(() => console.log(showData), [showData])
     
+    const { transactions } = useContext(TransactionsContext);
+
+    let mapReverse1 = transactions.slice(0)
+    mapReverse1 = mapReverse1.reverse()
+    mapReverse1 = mapReverse1.map(element => {
+        return element;
+    });
+
     return (
         <Main>
             <Form>
@@ -54,6 +62,20 @@ function Transactions() {
                         </tr>
                     </TableHead>
                     <TableBody>
+                        {
+                            mapReverse1.map(transaction => {
+                                const receiver = transaction.receiver_account;
+                                const date = transaction.date;
+                                const value = transaction.value;
+                                return (
+                                    <tr>
+                                        <td>{receiver}</td>
+                                        <td>{date}</td>
+                                        <td>{value}</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </TableBody>
                 </Table>
             </Panel>
