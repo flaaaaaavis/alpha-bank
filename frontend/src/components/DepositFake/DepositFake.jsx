@@ -12,7 +12,7 @@ function DepositFake() {
   async function handleDeposit(e) {
     e.preventDefault();
 
-    const today = new Date
+    const today = new Date();
 
     const data = `${today.getFullYear()}-${(today.getMonth)+1}-${today.getDate}`
     
