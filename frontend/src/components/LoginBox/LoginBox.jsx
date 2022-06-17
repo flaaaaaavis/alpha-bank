@@ -6,16 +6,17 @@ import logo from '../../images/logo.png'
 import logoText from '../../images/AlphaBank.png'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import AccountContext from '../../contexts/AccountContext';
-import UserContext from '../../contexts/UserContext';
-import TransactionsContext from '../../contexts/TransactionsContext';
-import CardContext from '../../contexts/CardContext';
+import { AccountContext } from '../../contexts/AccountContext';
+import { UserContext } from '../../contexts/UserContext';
+import { TransactionsContext } from '../../contexts/TransactionContext';
+import { CardContext } from '../../contexts/CardContext';
 
 
 
 function LoginBox() {
 
     let navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
     const { collectAccount } = useContext(AccountContext);
@@ -35,7 +36,8 @@ function LoginBox() {
             method:'POST',
             mode: 'cors',
             body: JSON.stringify(login),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
         };
 
         const response = await fetch("http://localhost:4000/login", options)
@@ -44,11 +46,11 @@ function LoginBox() {
                                .catch(error => console.log(error));
         if (response.auth) {
 
-            collectAccount();
             collectUser();
+            collectAccount();
             collectCard();
             collectTransactions();
-            navigate('/customerpage');
+            navigate('/cardarea');
 
         } else {
 

@@ -10,11 +10,14 @@ export const UserProvider = (props) => {
     const [email, setEmail] = useState("");
 
     async function collectUser() {
-        const response = await fetch("http://localhost:4000/user");
-        setName(response.rows[0].name);
-        setCpf(response.rows[0].cpf);
-        setBDate(response.rows[0].bDate);
-        setEmail(response.rows[0].email);
+        const response = await fetch("http://localhost:4000/user", {method: 'get', credentials: 'include'})
+                               .then(data => data.json())
+                               .then(resposta => resposta)
+                               .catch(error=> console.log(error));
+        setName(response.user.name);
+        setCpf(response.user.cpf);
+        setBDate(response.user.bDate);
+        setEmail(response.user.email);
     }
 
     return (

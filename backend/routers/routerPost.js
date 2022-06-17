@@ -11,7 +11,6 @@ const { json } = require("express");
 router.post('/login', async (req, res) => { 
 
     const { email, password } = req.body;
-    console.log(req.body)
     try {
         let dbUserPassword = await pool.query(`SELECT password 
                                                  FROM users 
@@ -19,7 +18,6 @@ router.post('/login', async (req, res) => {
                                                  AND deleted_at IS NULL`);        
         if (dbUserPassword.rows[0] === undefined) res.status(401).json({ auth: false , message: "Wrong Email"});
         dbUserPassword = dbUserPassword.rows[0].password;
-        console.log(dbUserPassword)
         if (compare(password, dbUserPassword)) {
             try {
                 // Gerando Token
@@ -35,9 +33,8 @@ router.post('/login', async (req, res) => {
 
                 await pool.query(`INSERT INTO sessions (jwt, user_id) VALUES ('${session.jwt}', ${session.user_id})`)
 
-                // Gerando Cookie
-                const thirtyDays = 1000 * 60 * 60 * 24 * 30;
-                res.cookie("token", userToken , {maxAge: thirtyDays, path: '/'});
+                // Gerando Cookie                
+                res.cookie("token", userToken);
                
                 // Enviando Resposta
                 const loggedInUser = await pool.query(`SELECT * 

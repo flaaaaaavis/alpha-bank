@@ -9,10 +9,13 @@ export const AccountProvider = (props) => {
     const [balance, setBalance] = useState(0);
 
     async function collectAccount() {
-        const response = await fetch("http://localhost:4000/card");
-        setNumber(response.rows[0].number);
-        setUuid(response.rows[0].uuid);
-        setBalance(parseFloat(response.rows[0].balance));
+        const response = await fetch("http://localhost:4000/account", {credentials: 'include'})
+                               .then(data => data.json())
+                               .then(resposta => resposta)
+                               .catch(error=> console.log(error));
+        setNumber(response.account.number);
+        setUuid(response.account.uuid);
+        setBalance(parseFloat(response.account.balance));
     }
 
     return (

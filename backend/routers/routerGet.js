@@ -79,28 +79,6 @@ router.get("/transactions", async (req, res) => {
     }
 });
 
-// router.get("/AllTransactions", async (req, res) => {
-//     try {
-//         const token = req.cookies.token;
-//         const user = jwtController.verify(token, process.env.SECRET);
-
-//         let account = await pool.query(`SELECT id 
-//                                         FROM accounts 
-//                                         WHERE user_id = ${user.user_id}`);
-//         account = account.rows[0];
-
-//         const transactions = await pool.query(`SELECT * 
-//                                                FROM transactions 
-//                                                WHERE sender_id = ${account};`);
-
-//         if (transactions.rows === []) res.status(401).json({ message:"Nenhuma transação realizada"});
-//         res.status(200).json({ message:"Done and Done", transactions: transactions.rows });
-
-//     } catch (error) {
-//         console.log(error); 
-//     }
-// });
-
 //Informações do Cartão
 router.get("/card", async (req, res) => {
 
@@ -132,7 +110,6 @@ router.get("/user", async (req, res) => {
 
         const token = req.cookies.token;
         const user = jwtController.verify(token, process.env.SECRET);
-        console.log(user)
 
         let userData = await pool.query(`SELECT * 
                                         FROM users 
